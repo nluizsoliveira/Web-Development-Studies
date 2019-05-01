@@ -23,5 +23,7 @@ Hospedagem convencional, por VPS e por SaaS são os tipos mais comuns de hospeda
 
 ### Servidor de aplicação
 Software que é instalado em um servidor físico, permitindo acesso a diferentes tipos de recursos Web. Cada backend utiliza um servidor de aplicação específico. Por exemplo, o Apache permite a utilização do PHP. O Apache Tomcat, Java. Cada servidor de aplicação é utilizado em uma porta diferente, sendo comum que um servidor utilize mais de um servidor de aplicação. 
- 
-### Domínio vs Subdomínio vs Porta
+
+### Domínio vs Subdomínio
+Todo site pode varios subdiminios. **www**,por exemplo, é um subdominio, mas por razões históricas ainda é muito utilizado em analogia ao **W**orld **W**ide **W**eb. Entretanto, é mais comum indicar subdominios por barras (/). 
+
