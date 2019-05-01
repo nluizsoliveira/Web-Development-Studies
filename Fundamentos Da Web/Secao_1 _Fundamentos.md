@@ -15,5 +15,13 @@ Protocolo que descreve como endereçar computadores em uma rede. Designa um núm
 ### Domínios
 Decorar IPs para gerar requisições aos servidores da web é inviável. Domínios são **"máscaras" associadas a um ip específico**, que permitem facil memorização por parte do usuário. No Brasil, **registro.br** é a organização responsável pela venda de domínios. 
 
-## DNS
+### DNS
 Embora para humanos seja mais fácil decorar domínios a IPs, o protocolo http por sí só não define acesso a domínios. Neste sentido, o **DNS** (**D**omain **N**ame **S**ystem) **resolve** nomes de domínios em ips. Inicialmente, o servidor **root** resolve a terminação do domínio (.com.br, .com, .net), indicando qual servidor(**TLD**) gerencia tais dominios. Em seguida, o TLD(**T**op **L**evel **D**omain), servidor mundial de re-direcionalmento, resolve requisição ao **ANS** (**A**uthoritative **N**ame **S**erver), que de fato retorna o IP pedido. (Mais informações em https://serverfault.com/questions/241511/root-nameserver-vs-top-level-domain-server)
+
+### Hospedagem
+Hospedagem convencional, por VPS e por SaaS são os tipos mais comuns de hospedagem. 
+
+### Servidor de aplicação
+Software que é instalado em um servidor físico, permitindo acesso a diferentes tipos de recursos Web. Cada backend utiliza um servidor de aplicação específico. Por exemplo, o Apache permite a utilização do PHP. O Apache Tomcat, Java. Cada servidor de aplicação é utilizado em uma porta diferente, sendo comum que um servidor utilize mais de um servidor de aplicação. 
+ 
+### Domínio vs Subdomínio vs Porta
