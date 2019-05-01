@@ -14,3 +14,6 @@ Protocolo que descreve como endereçar computadores em uma rede. Designa um núm
 
 ### Domínios
 Decorar IPs para gerar requisições aos servidores da web é inviável. Domínios são **"máscaras" associadas a um ip específico**, que permitem facil memorização por parte do usuário. No Brasil, **registro.br** é a organização responsável pela venda de domínios. 
+
+## DNS
+Embora para humanos seja mais fácil decorar domínios a IPs, o protocolo http por sí só não define acesso a domínios. Neste sentido, o **DNS** (**D**omain **N**ame **S**ystem) **resolve** nomes de domínios em ips. 
