@@ -60,59 +60,24 @@ Também é possível indicar tags (No contexto de palavras-chave, e não html) r
 ```
 Indica ao navegador que a página de Nelson Luiz de Oliveira, trata sobre resumo de HTML e cobre os tópicos HTML, CSS e Tags. 
 * ##### ```<style> </style>```
-Permite a inserção de código CSS diretamente no HTML. Por exemplo:
-```
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-    </head>
-    <body>
-        <p>Paragrafo</p>
-    </body>
-</html>
-```
-gera: 
-<html lang="en">
-    <head>
-    </head>
-    <body>
-        <p>Paragrafo</p>
-    </body>
-</html>
-
-Já adicionando style em head, é gerado:
+Permite a inserção de código de estilo (CSS, por exemplo) diretamente no HTML. Por exemplo:
 
 ```
-<!DOCTYPE html>
 <html lang="en">
     <head>
-       <style type = 'text/css'>
-            p{
-                color: blue;
-              }
+       <style type="text/css">
+            body {
+              color:red;
+            }
         </style>
     </head>
     <body>
+        <p>Meu paragrafo<p>
     </body>
 </html>
 ```
+Faz com que todo parágrafo do HTML fique vermelho.Teste em https://www.w3schools.com/code/tryit.asp?filename=G3ONPJCNKFUX **Não é indicado fazer alterações de estilo diretamente no HTML**. Um arquivo CSS separado deve ser utilizado. 
 
-<html lang="en">
-    <head>
-       <style type = 'text/css'>
-            p{
-                color: blue;
-              }
-        </style>
-    </head>
-    <body>
-    </body>
-</html>
-
-
-##### ```<script>```
-##### ```<noscript>```
-##### ```<template>```
 
 ## Respostas de requisições HTTP
 Na aba de **Network** do inspecionar elemento, são listadas as respostas das requisições HTTP. São agrupadas em 
