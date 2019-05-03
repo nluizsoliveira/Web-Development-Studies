@@ -36,17 +36,17 @@ Existem mais de 100 tags que definem o atual HTML5. Entretanto, poucas delas sã
 Indica ao nagevador que trata-se de um documento HTML e engloba todo o resto do código
 ### ```<head> </head>```
 Delimita o cabeçalho da página. O conteúdo do **head não aparece diretamente na página**, sendo destinado a **especificações e configurações** que auxiliam o navegador. As tags que compõe o head são: 
-* ##### ```<title> </title>```
+##### ```<title> </title>```
 Indica o título da página, que aparece na aba do navegador.
-* ##### ```<base>``` 
+##### ```<base>``` 
 Define URL base do documento, o que facilita a atribuição de urls via href . **É única, não é possível ter mais de uma base no mesmo documento**.
-* ##### ```<link>```
+##### ```<link>```
 Utilizada para incluir recursos no documento. Por exemplo, 
 ```
         <link href="./main.css" rel="stylesheet">
 ```
 Indica que no caminho **href** = ./main.css há um documento a ser incluído, e seu atributo **ref** indica que trata-se de um stylesheet. Pode haver múltiplos links por documento. 
-* ##### ```<meta>```
+##### ```<meta>```
 Passa meta-informações sobre o **funcionamento da página** ao navegador. Permite, por exemplo, indicar que a página possuirá padrão de escrita (charset) **unicode** e não ascii, que seria o padrão-base, como em: 
 ```
          <meta charset="UTF-8">
@@ -58,8 +58,8 @@ Também é possível indicar tags (No contexto de palavras-chave, e não html) r
 <meta name = "description" content = "Resumo de HTML">
 <meta name = "author" content = "Nelson Luiz Oliveira">
 ```
-Indica ao navegador que a página de Nelson Luiz de Oliveira, trata sobre resumo de HTML e cobre os tópicos HTML, CSS e Tags. 
-* ##### ```<style> </style>```
+Indica ao navegador que a página de Nelson Luiz de Oliveira trata sobre resumo de HTML e cobre os tópicos HTML, CSS e Tags. 
+##### ```<style> </style>```
 Permite a inserção de código de estilo (CSS, por exemplo) diretamente no HTML. Por exemplo:
 
 ```
@@ -76,10 +76,13 @@ Permite a inserção de código de estilo (CSS, por exemplo) diretamente no HTML
     </body>
 </html>
 ```
-Faz com que todo parágrafo do HTML fique vermelho.Teste em https://www.w3schools.com/code/tryit.asp?filename=G3ONPJCNKFUX **Não é indicado fazer alterações de estilo diretamente no HTML**. Um arquivo CSS separado deve ser utilizado. 
+Faz com que todo parágrafo do HTML fique vermelho.Teste em https://www.w3schools.com/code/tryit.asp?filename=G3ONPJCNKFUX 
+
+**Não é indicado fazer alterações de estilo diretamente no HTML**. Um arquivo CSS separado deve ser utilizado. 
 
 
 ## Respostas de requisições HTTP
+Toda a comunicação entre computador e servidor é feita por requisições do protocolo HTTP. 
 Na aba de **Network** do inspecionar elemento, são listadas as respostas das requisições HTTP. São agrupadas em 
 ##### 1xx
 Respostas de informação. Por exemplo, quando o navegador solicita o site ao servidor, é enviada uma mensagem ```100: Continue```
