@@ -31,22 +31,21 @@ Existem mais de 100 tags que definem o atual HTML5. Entretanto, poucas delas sã
     </body>
 </html>
 ```
-
 ### ```<html> </html>```
 Indica ao nagevador que trata-se de um documento HTML e engloba todo o resto do código
 ### ```<head> </head>```
 Delimita o cabeçalho da página. O conteúdo do **head não aparece diretamente na página**, sendo destinado a **especificações e configurações** que auxiliam o navegador. As tags que compõe o head são: 
-##### ```<title> </title>```
+* ##### ```<title> </title>```
 Indica o título da página, que aparece na aba do navegador.
-##### ```<base>``` 
+* ##### ```<base>``` 
 Define URL base do documento, o que facilita a atribuição de urls via href . **É única, não é possível ter mais de uma base no mesmo documento**.
-##### ```<link>```
+* ##### ```<link>```
 Utilizada para incluir recursos no documento. Por exemplo, 
 ```
         <link href="./main.css" rel="stylesheet">
 ```
 Indica que no caminho **href** = ./main.css há um documento a ser incluído, e seu atributo **ref** indica que trata-se de um stylesheet. Pode haver múltiplos links por documento. 
-##### ```<meta>```
+* ##### ```<meta>```
 Passa meta-informações sobre o **funcionamento da página** ao navegador. Permite, por exemplo, indicar que a página possuirá padrão de escrita (charset) **unicode** e não ascii, que seria o padrão-base, como em: 
 ```
          <meta charset="UTF-8">
@@ -59,7 +58,7 @@ Também é possível indicar tags (No contexto de palavras-chave, e não html) r
 <meta name = "author" content = "Nelson Luiz Oliveira">
 ```
 Indica ao navegador que a página de Nelson Luiz de Oliveira trata sobre resumo de HTML e cobre os tópicos HTML, CSS e Tags. 
-##### ```<style> </style>```
+* ##### ```<style> </style>```
 Permite a inserção de código de estilo (CSS, por exemplo) diretamente no HTML. Por exemplo:
 
 ```
@@ -80,8 +79,8 @@ Faz com que todo parágrafo do HTML fique vermelho.Teste em https://www.w3school
 
 **Não é indicado fazer alterações de estilo diretamente no HTML**. Um arquivo CSS separado deve ser utilizado. 
 
-
-## Respostas de requisições HTTP
+_______________________________________
+### Respostas de requisições HTTP
 Toda a comunicação entre computador e servidor é feita por requisições do protocolo HTTP. 
 Na aba de **Network** do inspecionar elemento, são listadas as respostas das requisições HTTP. São agrupadas em 
 ##### 1xx
@@ -95,4 +94,84 @@ Respostas de erro de cliente. Recursos que demandam autorização, indisponívei
 ##### 5xx
 Respostas de erro do servidor. 
 
-______________________
+________________________________________
+### Atributos
+Variáveis específicas de cada tag que permitem modificar seu comportamento. A tag
+* ##### ```<input>```
+Cria uma área de input na página. Mas um input, por sí só, é muito **genérico**. Inputs tem, por exemplo, tipo, obrigatoriedade e restrição de resposta. Cada um destes é representado por um **atributo**, e cada atributo possui **valores possíveis** pré-estabelecidos que definem seu comportamento.
+Todos os atributos e seus respectivos valores possíveis de cada tag podem ser encontrado na documentação da mesma. No caso, https://www.tutorialspoint.com/html/html_input_tag.htm
+* **type** estabelece o **tipo** do input. Pode ser, por exemplo:
+    * text
+    * email
+    * number
+    * password
+```
+<html>
+    <head>
+    </head>
+    <body>
+        <input type = "text">
+        <input type="password">
+        <button type = submit>Enviar</button>
+    </body>
+</html>
+```
+
+* **required** estabelece que o input deve ser respondido ao se clickar em um botão de submissão com atributo submit.
+
+```
+<html>
+    <head>
+    </head>
+    <body>
+        <input type = "text" required>
+        <input type="password" required>
+        <button type = submit>Enviar</button>
+    </body>
+</html>
+```
+Agora, submit só funciona se todos os campos forem preechidos.
+
+Outros atributos importantíssimos são **id** e **class**, que classificam individualmente ou em grupo as tags e permitem que o **css** e **javascript** identifiquem quais elementos devem modificar. 
+
+
+### Doctype e comentários
+**Comentários** são observações que facilitam o entendimento do código. Não aparecem na página e são ignorados pelo navegador durante sua montagem. Em HTML, comentários são inicializados por ```!<--``` e finalizados por ```-->```.
+
+```
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <!-- Cria uma barra de progresso. Value guarda o valor preenchido da barra, e max o seu valor máximo. -->
+        <!-- Teste em  https://www.w3schools.com/code/tryit.asp?filename=G3OP9YAG18UH -->
+        <progress id="health" value="100" max="100"></progress>
+    </body>
+</html>
+```
+O elemento ```<!DOCTYPE html>```, no passado, passava ao navegador uma série de parâmetros que ajudavam-no a processar a página como HTML. Entretanto no HTML5 a tag foi simplificada, e agora define que a versão do HTML é a 5. 
+
+### Separação de conteúdos (Web Semântica)
+É possível preencher todo o conteúdo da páginas com tags genéricas, como o ```<p>```. Entretanto, a estruturação da página seguindo **boas práticas de Web Semântica** (movimento colaborativo para **organizar a informação de maneira legível para computadores e máquinas**) é essencial para seu processamento por ferramentas externas.
+
+
+Por exemplo, é comum que blogs ou sites de notícias possuam conteúdo em forma de artigos. Mais ainda, fornecer informações sobre o autor de algum conteúdo. Disponibilizar o artigo dentro da tag **```<article> </article>```**, assim como informações do autor dentro da tag **```<address> </address>```** permite que o conteúdo seja melhor classificado por motores de busca, por exemplo. Caso não se refira ao autor de um artigo, e sim do website como um todo, deve ser colocada dentro do **```<footer> </footer:```**, outra tag característica que reúne informações chave do website. Por exemplo: 
+
+```
+<html>
+    <head>
+    </head>
+    <body>
+        <article>
+            <p>A estruturação da página seguindo boas práticas de Web Semântica é essencial para seu processamento por ferramentas externas.</p>
+        <address> Autor: W3C Semantic Web<a mailto="contact@w3">contact@w3</a>. </address>
+        </article>
+
+        <footer>
+            <address> Autor: Nelson Oliveira <a mailto="nelson.luiz.oliveira@usp.br">nelson.luiz.oliveira@usp.br</a>. </address>
+        </footer>
+    </body>
+</html>
+```
+
