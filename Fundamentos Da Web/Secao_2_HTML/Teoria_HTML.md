@@ -61,6 +61,26 @@ Também é possível indicar tags (No contexto de palavras-chave, e não html) r
 Indica ao navegador que a página de Nelson Luiz de Oliveira, trata sobre resumo de HTML e cobre os tópicos HTML, CSS e Tags. 
 * ##### ```<style> </style>```
 Permite a inserção de código CSS diretamente no HTML. Por exemplo:
+```
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    </head>
+    <body>
+        <p>Paragrafo</p>
+    </body>
+</html>
+```
+gera: 
+<html lang="en">
+    <head>
+    </head>
+    <body>
+        <p>Paragrafo</p>
+    </body>
+</html>
+
+Já adicionando style em head, é gerado:
 
 ```
 <!DOCTYPE html>
@@ -76,9 +96,20 @@ Permite a inserção de código CSS diretamente no HTML. Por exemplo:
     </body>
 </html>
 ```
-fefe
 
-```
+<html lang="en">
+    <head>
+       <style type = 'text/css'>
+            p{
+                color: blue;
+              }
+        </style>
+    </head>
+    <body>
+    </body>
+</html>
+
+
 ##### ```<script>```
 ##### ```<noscript>```
 ##### ```<template>```
