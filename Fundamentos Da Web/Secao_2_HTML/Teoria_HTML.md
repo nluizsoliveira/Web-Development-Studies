@@ -156,7 +156,7 @@ O elemento ```<!DOCTYPE html>```, no passado, passava ao navegador uma série de
 É possível preencher todo o conteúdo da páginas com tags genéricas, como o ```<p>```. Entretanto, a estruturação da página seguindo **boas práticas de Web Semântica** (movimento colaborativo para **organizar a informação de maneira legível para computadores e máquinas**) é essencial para seu processamento por ferramentas externas.
 
 
-Por exemplo, é comum que blogs ou sites de notícias possuam conteúdo em forma de artigos. Mais ainda, fornecer informações sobre o autor de algum conteúdo. Disponibilizar o artigo dentro da tag **```<article> </article>```**, assim como informações do autor dentro da tag **```<address> </address>```** permite que o conteúdo seja melhor classificado por motores de busca, por exemplo. Caso não se refira ao autor de um artigo, e sim do website como um todo, deve ser colocada dentro do **```<footer> </footer:```**, outra tag característica que reúne informações chave do website. Por exemplo: 
+É comum que blogs ou sites de notícias possuam conteúdo em forma de artigos. Mais ainda, fornecer informações sobre o autor de algum conteúdo. Disponibilizar o artigo dentro da tag **```<article> </article>```**, assim como informações do autor dentro da tag **```<address> </address>```** permite que o conteúdo seja melhor classificado por motores de busca, por exemplo. Caso não se refira ao autor de um artigo, e sim do website como um todo, deve ser colocada dentro do **```<footer> </footer:```**, outra tag característica que reúne informações chave do website. Por exemplo: 
 
 ```
 <html>
@@ -174,4 +174,242 @@ Por exemplo, é comum que blogs ou sites de notícias possuam conteúdo em forma
     </body>
 </html>
 ```
+* ##### Títulos:
+São definidos pela letra h seguida de um número que indica sua relevância na página. É recomendado apenas um ```<h1>``` por página, bem como evitar abusos de ```<h2>```;
+```
+<h1>Título h1</h1>
+<h2>Título h2</h2>
+<h3>Título h3</h3>
+<h4>Título h4</h4>
+<h5>Título h5</h5>
+<h6>Título h6</h6>
+
+```
+<html>
+    <body>
+<h1>Título h1</h1>
+<h2>Título h2</h2>
+<h3>Título h3</h3>
+<h4>Título h4</h4>
+<h5>Título h5</h5>
+<h6>Título h6</h6>
+    </body>
+ </html>
+ 
+ * ##### ```<nav> </nav>```
+Menu de navegação. Representa uma seção da página que aponta para outras páginas ou área da páginas. É a partir de navs que motores de busca geram susessões do site do primeiro resultado de busca. É utilizado em conjunto de listas.
+
+```
+<html>
+  <head>
+  </head>
+  <body>
+      <nav>
+          <ul>
+            <li><a href="url_para_pagina_inicial">Página inicial</a></li>
+            <li><a href="url_para_sobre">Sobre</a></li>
+            <li><a href="url_para_contato">Contato</a></li>
+          </ul>
+        </nav>
+    </body>
+</html>
+
+```
+
+<head>
+</head>
+<body>
+<nav>
+<ul>
+<li><a href="url_para_pagina_inicial">Página inicial</a></li>
+<li><a href="url_para_sobre">Sobre</a></li>
+<li><a href="url_para_contato">Contato</a></li>
+</ul>
+</nav>
+</body>
+</html>
+
+ * ##### ```<hr> ```
+Marca mudança de significado semântico. Pode ser utiliada em barras horizontais que separam conteúdos, por exemplo, para que passem a ter, além de significado visual, semântico para motores de busca. 
+
+
+
+
+### Conteúdo Textual
+ * ##### ```<div> </div>```
+Caixa vazia sem formatação, utilizada para agrupá-los em um mesmo conteiner editável por CSS.
+
+```
+<html>
+    <head>
+    </head>
+    <body>
+    <div id = "album_de_fotos">
+        <img src = "link_ou_path_da_imagem">
+        <img src = "link_ou_path_da_imagem">
+        <img src = "link_ou_path_da_imagem">
+        <img src = "link_ou_path_da_imagem">
+    </div>
+        <img src = "imagem_qualquer_fora_do_album">
+    </body>
+</html>
+```
+Permitiria tratar conjuntamente todas as imagens dentro de "album_de_fotos". A div transcende a classe **cria um elemento** em torno das imagens, que por sí só **possui as mesmas propriedades de outro elemento html qualquer (margem, tamanho relativo, padding, etc)**. 
+
+No exemplo, inserir uma borda em imagens da mesma classe faria com que todas ficassem com borda entre sí. Criar uma div em torno delas, e então inserir a borda, criaria uma borda em torno das imagens **como se fossem um só elemento**. 
+
+ * ##### ```<dl> </dl>, <dt> </dt> e <dd> </dd>```
+Definem listas de termos dentro de um site. 
+**dl** vem de definition list; lista de definições.
+**dt** vem de definition term, termo a ser definido
+**dd** vem de definition description, a descrição de fato do termo
+
+```
+<p>Harry Potter Spells:</p>
+
+<dl>
+    <dt>Wingardium Leviosa</dt>
+    <dd>Levitates objects.</dd>
+
+    <dt>Alohomora</dt>
+    <dd>Opens door locks.</dd>
+
+    <dt>Lumos</dt>
+    <dd>Creates Light.</dd>
+</dl>
+```
+
+<p>Harry Potter Spells:</p>
+<html>
+<dl>
+    <dt>Wingardium Leviosa</dt>
+    <dd>Levitates objects.</dd>
+
+   <dt>Alohomora</dt>
+   <dd>Opens door locks.</dd>
+
+   <dt>Lumos</dt>
+   <dd>Creates Light.</dd>
+</dl>
+</html>
+
+ * ##### ```<ol> </ol>  <ul> </ul> e <li> </li>```
+ **ol** vem de ordered list
+ **ul** vem de unordered list
+ **li** vem de list item
+ 
+ ```
+<p>Lists:</p>
+<ol>Ordered List
+    <li> List item</li>
+    <li> List item</li>
+    <li> List item</li>
+</ol>
+
+<ul>Unordered List
+    <li> List item</li>
+    <li> List item</li>
+    <li> List item</li>
+</ul>
+
+```
+
+<p>Lists:</p>
+<ol>Ordered List
+    <li> List item</li>
+    <li> List item</li>
+    <li> List item</li>
+</ol>
+
+<ul>Unordered List
+    <li> List item</li>
+    <li> List item</li>
+    <li> List item</li>
+</ul>
+ 
+ * ##### ```<pre> </pre>```
+ Respeita a formatação do conteúdo pré formatado. 
+ 
+ ```
+ <pre> texto    pre   formatado</pre>
+ <p> texto      não    pre    formatado </p>
+
+```
+Espaços e tabs são respeitados por ```<pre>```, ao contrario de outras entradas de texto comuns. 
+
+ <pre>texto  pre  formatado</pre>
+ <p>texto  não  pre  formatado<p>
+    
+### Elementos Semânticos
+ * ##### ```<a> </a>```
+ Insere link.
+ 
+ ```
+    <a href = "www.google.com">Google</a>
+ ```
+ <a href = "www.google.com">Google</a>
+
+ * ##### ```<abbr> </abbr>```
+Dá significado semântico à abreviação, fazendo com que buscadores associem sua sigla ao termo completo. Também mostra abreviação ao passar mouse por cima da sigla.  
+ 
+ ```
+ <p>Nelson é estudante do <abbr title = "Institutos de Ciências Matemáticas e Computação">ICMC</abbr></p>
+ ```
+<p>Nelson é estudante do <abbr title = "Institutos de Ciências Matemáticas e Computação">ICMC</abbr></p>
+  
+* ##### ```<b> </b>```
+**b** vem de bold. Destaca palavras **importantes** do texto. 
+```
+<p>A palavra mais importante da frase é <b>esta</b></p>
+```
+<p>A palavra mais importante da frase é <b>esta</b></p>
+
+* ##### ```<br>```
+Tag de quebra de linha.
+
+```
+<p> Linha um <br> Linha dois</p>
+```
+<p> Linha um <br> Linha dois</p>
+
+* ##### ```<data> </data>```
+Permite inserção de dados que serão lidos por computadores (Ex: Código de barras)
+```
+<ul>
+    <li> <data value = "123123123"> Produto 1</data></li>
+    <li> <data value = "14234323"> Produto 2</data></li>
+    <li> <data value = "534345123"> Produto 3</data></li>
+</ul>
+```
+<ul>
+    <li> <data value = "123123123"> Produto 1</data></li>
+    <li> <data value = "14234323"> Produto 2</data></li>
+    <li> <data value = "534345123"> Produto 3</data></li>
+</ul>
+
+Ao salvar o arquivo.html e abrí-lo no navegador, inspecionando o elemento, é possível ver os valores associados no campo data (Não funciona no Github)
+
+* ##### ```<dfn> </dfn>```
+Permite criar definição de um termo e que buscadores identifiquem seu site como provedor de uma definição ao mesmo. 
+```
+<p>O <dfn id = "def-dns">DNS</dfn> é a sigla em inglês para Domain Name System (Sistema de Nomes e Domínios, em português), responsável por descodificar os nomes dos domínios dos sites que as pessoas digitam nos navegadores web em números IP.</p>
+```
+
+<p>O <dfn id = "def-dns">DNS</dfn> é a sigla em inglês para Domain Name System (Sistema de Nomes e Domínios, em português), responsável por descodificar os nomes dos domínios dos sites que as pessoas digitam nos navegadores web em números IP.</p>
+
+* ##### ```<time> </time>```
+Maneira que dá semântica ao representar tempo. 
+```
+<article>
+    <p>O evento ocorreu <time datetime="2019-05-03 19:00">3 de Maio</time>.</p>
+    <p>Data de publicação:  <time pubdate>2019-05-03</time>.</p>
+</article>
+``` 
+
+<article>
+    <p>O evento ocorreu <time datetime="2019-05-03 19:00">3 de Maio</time>.</p>
+    <p>Data de publicação:  <time pubdate>2019-05-03</time>.</p>
+</article>
+
+### Imagem e Multimídia
 
