@@ -474,7 +474,11 @@ ________________________________________
 ### Elementos tabulados
 * ##### ```<table></table>,<thead></thead>, <tbody></tbody>, <tr></tr>, <th></th>, <td></td>, ```
 Permitem a criação de tabelas.
-Explicar como funcionam tabelas
+**thead** é o elemento semantico que indica que a **tr** que contém trata-se da primeira linha da tabela. 
+**th** indica um elemento da linha pertencente ao **thead**. O **número** de **th** no thead indica **quantas colunas** haverá na tabela. Além disso, elementos th são automaticamente **centralizados e colocados em negrito**.
+**tbody** indica o corpo da tabela, isto é, da segunda linha em diante. 
+**tr** indica uma linha (table row). O **numero** de **tr** no tbody indica **quantas linhas**, além da linha head, a tabela possuirá. 
+**td** é um elemento da linha. O número de tds por linha **deve respeitar o número de ths da tabela**. (Isto é, cada linha deve ter um número de elementos igual ao número de colunas da tabela definido no cabeçalho). 
 ```
 <html>
 <head>
@@ -575,3 +579,46 @@ Gera a tabela
 
 </body>
 </html>
+
+________________________________________
+### URI VS URN VS URL
+A URI une o **Protocolo (https://)** a **localização do recurso (URL - github.com.br)** e o **nome do recurso (URN - /nluizsoliveira/)**. É o "link completo". 
+________________________________________
+### Protocolo HTPP e form
+
+Ler :
+
+* http://gc.blog.br/2007/07/02/post-vs-put-quem-insere-e-quem-altera/
+* https://pt.stackoverflow.com/questions/92870/qual-%C3%A9-a-diferen%C3%A7a-entre-o-m%C3%A9todo-put-e-o-post
+* https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.1.2
+* https://woliveiras.com.br/posts/url-uri-qual-diferenca/
+* **https://pt.stackoverflow.com/questions/49322/quais-as-vantagens-de-se-utilizar-os-m%C3%A9todos-http-corretos**
+
+O **protocolo HTTP** é o conjunto de regras e transmissão de dados que permite a máquinas de diferentes configurações se comunicarem, por meio de requisições e respostas entre servidore e cliente. Cada requisição possui papel definido na especificação da linguagem, sendo os mais populares **GET**, **POST**, **PUT** e **DELETE**. Tais requisições **dizem ao navegador o que ele deve fazer com a informação identificada na URL**. Os métodos GET, PUT e DELET são **Idempotentes**, isto é, o efeito de se realizar múltiplas requisições seguidas é o mesmo de se realizar uma só. **POST NÃO É IDEMPOTENTE**. Além disto, em HTML5, <a href = "https://www.w3.org/TR/html5/forms.html#form-submission"> Apenas POST e GET são aceitos como métodos de submissão de formulários </a>
+
+
+**GET** - Requer ao servidor que transmita a informação identificada na URL ao cliente. Serve **apenas para leitura, não modificando a informação**.
+
+
+**POST** - Envia uma entidade e requisita que o servidor aceita-a como subordinada do recurso identificado pela URI.
+
+
+**PUT** - **Cria ou atualiza** uma uma informação identificada na URL.Put “coloca” uma página numa determinada URL. Se a página já existir naquela URL ela é substituída. Se não houver página, ela é criada e passa a ser a que foi enviada no PUT. PUT é uma operação limitada que simplesmente coloca uma página numa localidade 
+
+
+DELETE - **Deleta** um recurso identificado na URL. 
+      
+* ##### ```<form></form>```
+Indica o início de um formulário. Enviam e solicitam informações ao servidor por meio de requisições. Possui os atributos **```action = ""```** indica qual url será atingida pela requisição.  **```method = "metodo_escolhido"```** indica qual requisição será feita. Por padrão, **a requisição enviada é a GET, mas é possível requisitar outras por meio do parâmetro method**. Por exemplo, para requisitar DELETE, usa-se: ```<form action = "" method = "DELETE">```.
+
+* ##### ```<label></label>```
+Camada que precede um input. Indica ao usuário que tipo de informação ele deve fornecer pelo input. Possui como atributos **```for = "id_do_input_que_precede"```**, que indica qual input o label deve preceder. 
+* ##### ```<input></input>```
+Caixa de entrada por onde o usuário preenche as informações que serão enviadas ao servidor via requisições. Possui como atributos, fora o **id**, **```type = "tipo_de_input"**```**, onde é especificado o tipo do input (Texto, número, senha, e-mail, etc) e **```name = "nome_do_input"```**. **```value = "valor_do_input"```** define o valor do input, que representa coisas diferentes a depender do tipo do input. Da referência em w3schools, 
+
+```
+For "button", "reset", and "submit" - it defines the text on the button
+For "text", "password", and "hidden" - it defines the initial (default) value of the input field
+For "checkbox", "radio", "image" - it defines the value associated with the input (this is also the value that is sent on submit)
+```
+
