@@ -33,18 +33,22 @@ Existem mais de 100 tags que definem o atual HTML5. Entretanto, poucas delas sã
 ```
 ### ```<html> </html>```
 Indica ao nagevador que trata-se de um documento HTML e engloba todo o resto do código
+________________________________________
 ### ```<head> </head>```
 Delimita o cabeçalho da página. O conteúdo do **head não aparece diretamente na página**, sendo destinado a **especificações e configurações** que auxiliam o navegador. As tags que compõe o head são: 
 * ##### ```<title> </title>```
 Indica o título da página, que aparece na aba do navegador.
+________________________________________
 * ##### ```<base>``` 
 Define URL base do documento, o que facilita a atribuição de urls via href . **É única, não é possível ter mais de uma base no mesmo documento**.
+________________________________________
 * ##### ```<link>```
 Utilizada para incluir recursos no documento. Por exemplo, 
 ```
         <link href="./main.css" rel="stylesheet">
 ```
 Indica que no caminho **href** = ./main.css há um documento a ser incluído, e seu atributo **ref** indica que trata-se de um stylesheet. Pode haver múltiplos links por documento. 
+________________________________________
 * ##### ```<meta>```
 Passa meta-informações sobre o **funcionamento da página** ao navegador. Permite, por exemplo, indicar que a página possuirá padrão de escrita (charset) **unicode** e não ascii, que seria o padrão-base, como em: 
 ```
@@ -57,7 +61,8 @@ Também é possível indicar tags (No contexto de palavras-chave, e não html) r
 <meta name = "description" content = "Resumo de HTML">
 <meta name = "author" content = "Nelson Luiz Oliveira">
 ```
-Indica ao navegador que a página de Nelson Luiz de Oliveira trata sobre resumo de HTML e cobre os tópicos HTML, CSS e Tags. 
+Indica ao navegador que a página de Nelson Luiz de Oliveira trata sobre resumo de HTML e cobre os tópicos HTML, CSS e Tags.
+________________________________________
 * ##### ```<style> </style>```
 Permite a inserção de código de estilo (CSS, por exemplo) diretamente no HTML. Por exemplo:
 
@@ -134,7 +139,7 @@ Agora, submit só funciona se todos os campos forem preechidos.
 
 Outros atributos importantíssimos são **id** e **class**, que classificam individualmente ou em grupo as tags e permitem que o **css** e **javascript** identifiquem quais elementos devem modificar. 
 
-
+________________________________________
 ### Doctype e comentários
 **Comentários** são observações que facilitam o entendimento do código. Não aparecem na página e são ignorados pelo navegador durante sua montagem. Em HTML, comentários são inicializados por ```!<--``` e finalizados por ```-->```.
 
@@ -151,7 +156,7 @@ Outros atributos importantíssimos são **id** e **class**, que classificam indi
 </html>
 ```
 O elemento ```<!DOCTYPE html>```, no passado, passava ao navegador uma série de parâmetros que ajudavam-no a processar a página como HTML. Entretanto no HTML5 a tag foi simplificada, e agora define que a versão do HTML é a 5. 
-
+________________________________________
 ### Separação de conteúdos (Web Semântica)
 É possível preencher todo o conteúdo da páginas com tags genéricas, como o ```<p>```. Entretanto, a estruturação da página seguindo **boas práticas de Web Semântica** (movimento colaborativo para **organizar a informação de maneira legível para computadores e máquinas**) é essencial para seu processamento por ferramentas externas.
 
@@ -174,6 +179,7 @@ O elemento ```<!DOCTYPE html>```, no passado, passava ao navegador uma série de
     </body>
 </html>
 ```
+________________________________________
 * ##### Títulos:
 São definidos pela letra h seguida de um número que indica sua relevância na página. É recomendado apenas um ```<h1>``` por página, bem como evitar abusos de ```<h2>```;
 ```
@@ -197,6 +203,7 @@ São definidos pela letra h seguida de um número que indica sua relevância na 
  </html>
  
  * ##### ```<nav> </nav>```
+________________________________________
 Menu de navegação. Representa uma seção da página que aponta para outras páginas ou área da páginas. É a partir de navs que motores de busca geram susessões do site do primeiro resultado de busca. É utilizado em conjunto de listas.
 
 ```
@@ -229,6 +236,7 @@ Menu de navegação. Representa uma seção da página que aponta para outras p�
 </body>
 </html>
 
+________________________________________
  * ##### ```<hr> ```
 Marca mudança de significado semântico. Pode ser utiliada em barras horizontais que separam conteúdos, por exemplo, para que passem a ter, além de significado visual, semântico para motores de busca. 
 
@@ -258,7 +266,8 @@ Permitiria tratar conjuntamente todas as imagens dentro de "album_de_fotos". A d
 
 No exemplo, inserir uma borda em imagens da mesma classe faria com que todas ficassem com borda entre sí. Criar uma div em torno delas, e então inserir a borda, criaria uma borda em torno das imagens **como se fossem um só elemento**. 
 
- * ##### ```<dl> </dl>, <dt> </dt> e <dd> </dd>```
+________________________________________
+* ##### ```<dl> </dl>, <dt> </dt> e <dd> </dd>```
 Definem listas de termos dentro de um site. 
 **dl** vem de definition list; lista de definições.
 **dt** vem de definition term, termo a ser definido
@@ -293,7 +302,8 @@ Definem listas de termos dentro de um site.
 </dl>
 </html>
 
- * ##### ```<ol> </ol>  <ul> </ul> e <li> </li>```
+ ________________________________________
+* ##### ```<ol> </ol>  <ul> </ul> e <li> </li>```
  **ol** vem de ordered list
  **ul** vem de unordered list
  **li** vem de list item
@@ -327,7 +337,8 @@ Definem listas de termos dentro de um site.
     <li> List item</li>
 </ul>
  
- * ##### ```<pre> </pre>```
+ ________________________________________
+* ##### ```<pre> </pre>```
  Respeita a formatação do conteúdo pré formatado. 
  
  ```
@@ -340,6 +351,7 @@ Espaços e tabs são respeitados por ```<pre>```, ao contrario de outras entrada
  <pre>texto  pre  formatado</pre>
  <p>texto  não  pre  formatado<p>
     
+________________________________________
 ### Elementos Semânticos
  * ##### ```<a> </a>```
  Insere link.
@@ -357,6 +369,7 @@ Dá significado semântico à abreviação, fazendo com que buscadores associem 
  ```
 <p>Nelson é estudante do <abbr title = "Institutos de Ciências Matemáticas e Computação">ICMC</abbr></p>
   
+________________________________________
 * ##### ```<b> </b>```
 **b** vem de bold. Destaca palavras **importantes** do texto. 
 ```
@@ -364,6 +377,7 @@ Dá significado semântico à abreviação, fazendo com que buscadores associem 
 ```
 <p>A palavra mais importante da frase é <b>esta</b></p>
 
+________________________________________
 * ##### ```<br>```
 Tag de quebra de linha.
 
@@ -372,6 +386,7 @@ Tag de quebra de linha.
 ```
 <p> Linha um <br> Linha dois</p>
 
+________________________________________
 * ##### ```<data> </data>```
 Permite inserção de dados que serão lidos por computadores (Ex: Código de barras)
 ```
@@ -389,6 +404,7 @@ Permite inserção de dados que serão lidos por computadores (Ex: Código de ba
 
 Ao salvar o arquivo.html e abrí-lo no navegador, inspecionando o elemento, é possível ver os valores associados no campo data (Não funciona no Github)
 
+________________________________________
 * ##### ```<dfn> </dfn>```
 Permite criar definição de um termo e que buscadores identifiquem seu site como provedor de uma definição ao mesmo. 
 ```
@@ -397,6 +413,7 @@ Permite criar definição de um termo e que buscadores identifiquem seu site com
 
 <p>O <dfn id = "def-dns">DNS</dfn> é a sigla em inglês para Domain Name System (Sistema de Nomes e Domínios, em português), responsável por descodificar os nomes dos domínios dos sites que as pessoas digitam nos navegadores web em números IP.</p>
 
+________________________________________
 * ##### ```<time> </time>```
 Maneira que dá semântica ao representar tempo. 
 ```
@@ -411,5 +428,150 @@ Maneira que dá semântica ao representar tempo.
     <p>Data de publicação:  <time pubdate>2019-05-03</time>.</p>
 </article>
 
+________________________________________
 ### Imagem e Multimídia
+* ##### ```<map> </map> e <area></area>```
+Map define uma imagem como um **mapa**, e area define subareas deste mapa com base em coordenadas definidas da mesma. Com isto, é possível executar ações específicas ao se clickar sobre uma parte pre-delimitada de uma imagem. 
 
+```
+<html lang="en">
+    <head>
+        
+    </head>
+    <body>
+        <img src="https://www.akc.org/wp-content/themes/akc/component-library/assets/img/welcome.jpg" alt="" usemap="#Map" />
+        <map name="Map" id="Map">
+            <area alt="Dog's nose" title="Dog's nose" href="https://www.youtube.com/watch?v=Gf4k0VgCQjg" shape="rect" coords="98,77,136,109" />
+            <area alt="Dog's pawn" title="Dog's pawn" href="https://www.mnn.com/family/pets/stories/18-things-you-didnt-know-about-dog-paws" shape="rect" coords="205,364,248,410" />
+        </map>
+    </body>
+</html>
+```
+
+O site http://imagemap-generator.dariodomi.de/ automatiza o processo, permitindo criar múltiplas áreas de maneira e devolvendo o código HTML já com as mesmas mapeadas.
+
+**Coloque o código acima em um .html e tente clickar no nariz do cachorro ;)**
+
+________________________________________
+* ##### ```<video> </video> e <iframe> </iframe>```
+Insere um vídeo na página. Para vídeos no youtube. utilizar iframe. 
+
+```
+<iframe width="420" height="315"
+src="https://www.youtube.com/watch?v=r1LNxYYrLTM">
+</iframe>
+```
+________________________________________
+### Conteúdo integrado
+* ##### ```<embed> </embed>```
+Embed permite o uso de conteúdos de **sites externos** na página. Por exemplo, é possível incorporar vídeos do youtube já com as configuraçõe ideais, utilizando o código gerado por share->embed da própria plataforma. 
+
+```
+<iframe width="560" height="315" src="https://www.youtube.com/embed/r1LNxYYrLTM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+```
+(Código não funciona no github, testar em meio externo).
+________________________________________
+### Elementos tabulados
+* ##### ```<table></table>,<thead></thead>, <tbody></tbody>, <tr></tr>, <th></th>, <td></td>, ```
+Permitem a criação de tabelas.
+Explicar como funcionam tabelas
+```
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Evolves into</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><img src="http://img4.wikia.nocookie.net/__cb20140328190757/pokemon/images/thumb/2/21/001Bulbasaur.png/200px-001Bulbasaur.png"></td>
+                <td>Bulbasaur</td>
+                <td>Grass/Poison</td>
+
+                <td><a href="http://pokemon.wikia.com/wiki/Ivysaur">Ivysaur</a></td>
+
+            </tr>
+
+            <tr>
+                <td><img src="http://img4.wikia.nocookie.net/__cb20140724195345/pokemon/images/thumb/7/73/004Charmander.png/200px-004Charma"></td>
+                <td>Charmander</td>
+                <td>Fire</td>
+                <td><a href="http://pokemon.wikia.com/wiki/Charmeleon">Charmeleon</a></td>
+            </tr>
+
+            <tr>
+                <td><img src="http://img1.wikia.nocookie.net/__cb20140328191525/pokemon/images/thumb/3/39/007Squirtle.png/200px-007Squirtle.pngType"></td>
+                <td>Squirtle</td>
+                <td>Water</td>
+                <td><a href="http://pokemon.wikia.com/wiki/Wartotle">Wartotle</a></td>
+            </tr>
+
+        </tbody>
+
+    </table>
+    
+</body>
+</html>
+```
+Gera a tabela
+
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" media="screen" href="main.css">
+</head>
+<body>
+<table border="1">
+<thead>
+<tr>
+<th>Image</th>
+<th>Name</th>
+<th>Type</th>
+<th>Evolves into</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="http://img4.wikia.nocookie.net/__cb20140328190757/pokemon/images/thumb/2/21/001Bulbasaur.png/200px-001Bulbasaur.png"></td>
+<td>Bulbasaur</td>
+<td>Grass/Poison</td>
+
+<td><a href="http://pokemon.wikia.com/wiki/Ivysaur">Ivysaur</a></td>
+
+</tr>
+
+<tr>
+<td><img src="http://img4.wikia.nocookie.net/__cb20140724195345/pokemon/images/thumb/7/73/004Charmander.png/200px-004Charma"></td>
+<td>Charmander</td>
+<td>Fire</td>
+<td><a href="http://pokemon.wikia.com/wiki/Charmeleon">Charmeleon</a></td>
+</tr>
+
+<tr>
+<td><img src="http://img1.wikia.nocookie.net/__cb20140328191525/pokemon/images/thumb/3/39/007Squirtle.png/200px-007Squirtle.pngType"></td>
+<td>Squirtle</td>
+<td>Water</td>
+<td><a href="http://pokemon.wikia.com/wiki/Wartotle">Wartotle</a></td>
+</tr>
+
+</tbody>
+
+</table>
+
+</body>
+</html>
