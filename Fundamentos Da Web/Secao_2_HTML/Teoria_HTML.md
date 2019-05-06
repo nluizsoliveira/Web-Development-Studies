@@ -1075,4 +1075,69 @@ Teria SEO muito inferior a esta.
 ```
 ________________________________________
 ### Web Sockets
+Protocolo de comunicação **full duplex** baseado no protocolo **TCP**. Full duplex significa que a via tem comunicação de **ida e volta**. Permite estabelecer conexões longas entre cliente e servidor, ao contrário da **via http que é curta**. O http é muito bom em realizar conexões curtas e rápidas, mas em algumas situações é interessante o uso de conexões longas, como, por exemplo **permitir a existência de servidores ativos e passivos, e não apenas passivos**. A porta utilizada por padrão é a **80**. Conecta **o server-side com o client-side através do Javascript**, ou qualquer outra linguagem com suporte a web-sockets.
 
+________________________________________
+### SVG e Canvas 
+
+<table style="width: 94%; margin-left: calc(1%); margin-right: calc(5%);"><thead><tr><th style="width: 52.5865%;">SVG<br></th><th style="width: 47.2437%;">HTML Canvas<br></th></tr></thead><tbody><tr><td style="width: 52.5865%;">SVG possui melhor escalabilidade. Pode ser impresso em alta qualidade com qualquer resolução.></td><td style="width: 47.2437%;">Canvas possui baixa escalabilidade.<br></td></tr><tr><td style="width: 52.5865%;">SVG dá melhor performance para um número pequenos de objetos ou tela grande<br></td><td style="width: 47.2437%;">Canvas dá melhor performance com grande número de objetos ou telas pequenas<br></td></tr><tr><td style="width: 52.5865%;">SVG pode ser modificado por Script ou CSS<br></td><td style="width: 47.2437%;">Canvas pode ser modificado apenas por script<br></td></tr><tr><td>SVG é baseado em vetores e composto por formas<br></td><td>Canvas é baseado em raster e composto de pixels.<br></td></tr></tbody></table>
+
+FONTE: https://www.tutorialspoint.com/What-is-the-difference-between-SVG-and-HTML5-Canvas
+
+**Scalable Vector Graphics** é um padrão do W3C para gráficos vetoriais para a web baseado em XML. Possui como vantagem o fato de renderizar conteúdo por uma fórmula matemática, que é constantemente re-calculada pelo browser do cliente, o que permite uma imagem limpa e sem serrilhados, não importa o zoom dado.
+* ##### ```<svg></svg>```
+É um container para gráficos em SVG. Permite desenhar imagens vetoriais na tela. A dimensões passadas como parâmetros de **width** e **height** definem a sub-área da tela onde o svg será desenhado. 
+
+
+```
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Site Estacionamento</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <svg width = "500" height = "500">
+            <circle cx = "200" cy = "200" r = "100" stroke = "green" stroke-width = "4" fill = "yellow"/>
+        </svg>
+    </body>
+</html>
+```
+Desenha um círculo em um espaço de 500x500 com centro em x = 200, y = 200, raio = 100 de linha verde e borda de linha 4, com preenchimento amarelo. Ver em  https://www.w3schools.com/code/tryit.asp?filename=G3S8BCAT7TNR. 
+
+Há diversas formas prontas já implementadas, e é possível criar formas novas via definição de pontos. Ver https://www.w3schools.com/graphics/svg_examples.asp
+
+
+
+
+* ##### ```<canvas></canvas>```
+Elemento inserido do HTML5. Ao contrário do Canvas, que é um padrão utilizado em múltiplas plataformas, canvas é um elemento típico do HTML. Não é vetorial, e sim composto de bitmap. É exclusivamente editado por Javascript ou outra linguagem de script. 
+
+```
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Site Estacionamento</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+
+        <canvas id = "myCanvas" width = "200" height = "100" style = "border:1px solid black;">
+        </canvas>
+
+        <button onclick = "desenhar();">Desenha Reta</button>
+        <script type = "text/javascript">
+            function desenhar(){
+                var c = document.getElementById("myCanvas");
+                var ctx = c.getContext("2d");
+                ctx.moveTo(0,0);
+                ctx.lineTo(200,100);
+                ctx.stroke();
+            }    
+        </script>
+    </body>
+</html>
+```
+Cria um canvas que possui inicialmente um retângulo 200x100. É definida uma função que desenha sua diagonal, que é chamada quadno o botão é clickado. Teste aqui: https://www.w3schools.com/code/tryit.asp?filename=G3S9594JV9G5
