@@ -999,4 +999,80 @@ Cria o seguinte forms:
 **Como visto, get mostra a senha digitada! NÃO SE PODE USAR GET PARA CAMPOS QUE ENVOLVAM DADOS SIGILOSOS! Usar post**. 
 
 ________________________________________
-### Elementos interativos
+### Elementos interativos **Terminar após concluir curso de JS, não faz sentido usar com html puro** 
+
+* ##### ```<details></details>, <summary></summary>```
+Possuem valor semântico, inserindo mais detalhes a um elemento inserido no HTML. 
+
+```
+<details>
+        <summary>Documentos necessários</summary>
+        <p> Foto 3x4, RG e CPF</p>
+</details>
+```
+
+<!DOCTYPE html>
+<html>
+<details>
+        <summary>Documentos necessários</summary>
+        <p> Foto 3x4, RG e CPF</p>
+</details>
+
+</html>
+
+### SEO
+Search Engine Optimization. Ajuda a classificar sites quanto a motores de busca, aumentando sua posição na busca orgânica (Não paga). O uso da **semântica correta** melhora o SEO. Destacam-se, entre boas práticas:
+
+- Declarar **key-words** na tag ```<meta name = "keywords" content = "palavr_chave1, palavra_chave2, palavra_chave3```.
+- Utilizar no site elementos semânicos que mostrem que de fato o conteúdo das tags está sendo exposto, principalmente em tags ```<h1> , <h2>```.
+- Utilizar o atributo ```<meta name = "descripton" content = "descrição breve da página">```que gera os pequenos textos descritivos nas buscas do google.
+- Formatar corretamente o HTML. Tags mal formatadas, abertas e não fechadas, etc geram uma DOMs incorretas que não são bem processadas por search-engines. 
+-  Não usar frames e flash-player. 
+- URLs curtas, organizadas e que façam sentido com as palavras chave da página
+- Utilizar traços - e não underlines_ na url do site
+- Ter conteúdo do site citado/compartilhado em outros sites e redes sociais
+- Cadastrar a empresa no google meu negócio
+- Portabilidade e Segurança de Informação
+- Utilizar imagens otimizadas (Remasterizar imagens externamente e não por css/js, diminuindo peso e tamanho da pagina)
+- Utilizar atributo alt da imagem 
+- Bom uso da tag ```<title></title>```
+- Utilizar a tag robots
+- Indicar url canonica em caso de dominio duplicados 
+- Utilizar ferramentas de SEO checker https://chrome.google.com/webstore/detail/seo-peek/lkkpfhgjmocgneajknedjhodkjkkclod e https://chrome.google.com/webstore/detail/meta-seo-inspector/ibkclpciafdglkjkcibmohobjkcfkaef e https://validator.w3.org/
+
+As ferramentas de SEO checker funcionam apenas em páginas HTTP/HTTPS, ou seja, páginas online e não files locais. Entretanto, se esta página estivesse online
+```
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    </head>
+    <body>
+        <p>Seja bem vindo ao Estacionamento 24H<p>
+        <p>Franquia de estacionamentos para carros e motos espalhadas por todo o brasil<p>
+    
+    </body>
+</html>
+```
+Teria SEO muito inferior a esta. 
+```
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Site Estacionamento</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name = "description" content = "Estacionamento 24h - Franquia de Estacionamento">
+        <meta name = "keywords" content = "Estacionamento, 24H, carros, motos">
+        <META NAME = "ROBOTS" CONTENT = "INDEX, FOLLOW">
+        <link href="./main.css" rel="stylesheet">
+    </head>
+    <body>
+        <h1>Seja bem vindo ao Estacionamento 24H</h1>
+        <h2>Franquia de estacionamentos para carros e motos espalhadas por todo o brasil</h2>
+    
+    </body>
+</html>
+```
+________________________________________
+### Web Sockets
+
