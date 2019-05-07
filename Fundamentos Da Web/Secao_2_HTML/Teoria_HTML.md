@@ -1141,3 +1141,88 @@ Elemento inserido do HTML5. Ao contrário do Canvas, que é um padrão utilizado
 </html>
 ```
 Cria um canvas que possui inicialmente um retângulo 200x100. É definida uma função que desenha sua diagonal, que é chamada quadno o botão é clickado. Teste aqui: https://www.w3schools.com/code/tryit.asp?filename=G3S9594JV9G5
+________________________________________
+### Web Local Storage
+HTML5 permite armazenar dados no cliente do usuário sem o uso de Cookies. localStorage armazena dados que ficam guardados no browser mesmo após o término da sessão. sessionStorage armazena dados que são eliminados ao final da sessão. É possível acessar o web storage via: Inspecionar elemento -> application -> Local Storage  ou Session Storage--> file. Se houver botão de atualizar, atualizar.
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <script type="text/javascript">
+        function hasStorage(){
+            if (typeof(Storage) !== "undefined") {
+                return true;
+            } else {
+                alert('Navegador sem suporte a Web Storage')
+                return false;
+			}
+        }
+		function ler(){
+            if(hasStorage()){
+            document.getElementById("localstorage").innerHTML = localStorage.getItem("var1");
+            document.getElementById("sessionstorage").innerHTML = sessionStorage.getItem("var2");
+    
+        }
+        }
+		function save(){
+            if(hasStorage()){
+                localStorage.setItem("var1", "Variáveis salvas em local storage resistem mesmo após encerrada a sessão.");
+				sessionStorage.setItem("var2", "Variáveis salvas em session storage não. Entre e saia do navegador e teste!");
+				alert('Item salvo com sucesso')	
+			}
+		}
+	</script>
+</head>
+<body>
+	<p id="resultado">É possível acessar o web storage via: Inspecionar elemento -> application -> Local Storage  ou Session Storage--> file. Se houver botão de atualizar, atualizar.</p>
+    <p id="localstorage"></p>
+    <p id = "sessionstorage"></p>
+    <button onclick="save()">Salvar</button>
+	<button onclick="ler()">Ler</button>
+
+</body>
+</html>
+```
+____________________________________
+### Google Maps
+É possível inserir mapas do google na página utilizando a url do **Google Maps API** . É importante notar que para utilizar o serviço **é necessária uma api-key, que gera cobranças de acordo com o fluxo na ferramenta**. A maneira chamada correta da API do Maps é ```<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"type="text/javascript"></script>```.
+
+
+O atributo ```ROADMAP``` em ```mapTypeId: google.maps.MapTypeId.ROADMAP``` pode ser modificado, o que cria diferentes tipos de mapa.
+```
+ROADMAP (normal, default 2D map)
+SATELLITE (photographic map)
+HYBRID (photographic map + roads and city names)
+TERRAIN (map with mountains, rivers, etc.)
+```
+O atributo ```zoom``` muda o zoom inicial do mapa.É necessário alterar manualmente o atributo ```LatLng```, para que se adeque ao endereço físico do local. O tamanho do mapa é definido no ``` style="width:800px;height:800px">``` do HTML.
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+	<script type="text/javascript">
+		function myMap() {
+		    var mapOptions = {
+		        center: new google.maps.LatLng(-22.007066, -47.8948632),
+		        zoom: 10,
+		        mapTypeId: google.maps.MapTypeId.ROADMAP
+		    }
+		var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+		}
+	</script>
+</head>
+
+<body onload="myMap();">
+
+	<h1>Mapa do ICMC</h1>
+
+	<div id="map" style="width:800px;height:800px">
+
+</body>
+<html>
+```
+
