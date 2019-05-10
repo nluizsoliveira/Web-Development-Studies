@@ -17,7 +17,7 @@ Já imagens são auto fechadas:
     <img src = "./caminho_ou_url_da_imagem">
 ```
 Existem mais de 100 tags que definem o atual HTML5. Entretanto, poucas delas são essenciais e definem a estrutura-base de tóda página HTML. Muitos editores geram automaticamente o seguinte código, tal sua importância:  
-```
+```HTML
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -66,7 +66,7 @@ ________________________________________
 * ##### ```<style> </style>```
 Permite a inserção de código de estilo (CSS, por exemplo) diretamente no HTML. Por exemplo:
 
-```
+```HTML
 <html lang="en">
     <head>
        <style type="text/css">
@@ -110,7 +110,7 @@ Todos os atributos e seus respectivos valores possíveis de cada tag podem ser e
     * email
     * number
     * password
-```
+```HTML
 <html>
     <head>
     </head>
@@ -124,7 +124,7 @@ Todos os atributos e seus respectivos valores possíveis de cada tag podem ser e
 
 * **required** estabelece que o input deve ser respondido ao se clickar em um botão de submissão com atributo submit.
 
-```
+```HTML
 <html>
     <head>
     </head>
@@ -143,7 +143,7 @@ ________________________________________
 ### Doctype e comentários
 **Comentários** são observações que facilitam o entendimento do código. Não aparecem na página e são ignorados pelo navegador durante sua montagem. Em HTML, comentários são inicializados por ```!<--``` e finalizados por ```-->```.
 
-```
+```HTML
 <!DOCTYPE html>
 <html>
     <head>
@@ -163,7 +163,7 @@ ________________________________________
 
 É comum que blogs ou sites de notícias possuam conteúdo em forma de artigos. Mais ainda, fornecer informações sobre o autor de algum conteúdo. Disponibilizar o artigo dentro da tag **```<article> </article>```**, assim como informações do autor dentro da tag **```<address> </address>```** permite que o conteúdo seja melhor classificado por motores de busca, por exemplo. Caso não se refira ao autor de um artigo, e sim do website como um todo, deve ser colocada dentro do **```<footer> </footer:```**, outra tag característica que reúne informações chave do website. Por exemplo: 
 
-```
+```HTML
 <html>
     <head>
     </head>
@@ -206,7 +206,7 @@ São definidos pela letra h seguida de um número que indica sua relevância na 
 ________________________________________
 Menu de navegação. Representa uma seção da página que aponta para outras páginas ou área da páginas. É a partir de navs que motores de busca geram susessões do site do primeiro resultado de busca. É utilizado em conjunto de listas.
 
-```
+```HTML
 <html>
   <head>
   </head>
@@ -248,7 +248,7 @@ Marca mudança de significado semântico. Pode ser utiliada em barras horizontai
 Caixa vazia sem formatação, utilizada para agrupá-los em um mesmo conteiner editável por CSS.
 
 ```
-<html>
+<html>HTML
     <head>
     </head>
     <body>
@@ -273,7 +273,7 @@ Definem listas de termos dentro de um site.
 **dt** vem de definition term, termo a ser definido
 **dd** vem de definition description, a descrição de fato do termo
 
-```
+```HTML
 <p>Harry Potter Spells:</p>
 
 <dl>
@@ -308,7 +308,7 @@ Definem listas de termos dentro de um site.
  **ul** vem de unordered list
  **li** vem de list item
  
- ```
+ ```HTML
 <p>Lists:</p>
 <ol>Ordered List
     <li> List item</li>
@@ -389,7 +389,7 @@ Tag de quebra de linha.
 ________________________________________
 * ##### ```<data> </data>```
 Permite inserção de dados que serão lidos por computadores (Ex: Código de barras)
-```
+```HTML
 <ul>
     <li> <data value = "123123123"> Produto 1</data></li>
     <li> <data value = "14234323"> Produto 2</data></li>
@@ -416,7 +416,7 @@ Permite criar definição de um termo e que buscadores identifiquem seu site com
 ________________________________________
 * ##### ```<time> </time>```
 Maneira que dá semântica ao representar tempo. 
-```
+```HTML
 <article>
     <p>O evento ocorreu <time datetime="2019-05-03 19:00">3 de Maio</time>.</p>
     <p>Data de publicação:  <time pubdate>2019-05-03</time>.</p>
@@ -433,7 +433,7 @@ ________________________________________
 * ##### ```<map> </map> e <area></area>```
 Map define uma imagem como um **mapa**, e area define subareas deste mapa com base em coordenadas definidas da mesma. Com isto, é possível executar ações específicas ao se clickar sobre uma parte pre-delimitada de uma imagem. 
 
-```
+```HTML
 <html lang="en">
     <head>
         
@@ -479,7 +479,7 @@ Permitem a criação de tabelas.
 **tbody** indica o corpo da tabela, isto é, da segunda linha em diante. 
 **tr** indica uma linha (table row). O **numero** de **tr** no tbody indica **quantas linhas**, além da linha head, a tabela possuirá. 
 **td** é um elemento da linha. O número de tds por linha **deve respeitar o número de ths da tabela**. (Isto é, cada linha deve ter um número de elementos igual ao número de colunas da tabela definido no cabeçalho). 
-```
+```HTML
 <html>
 <head>
     <meta charset="utf-8">
@@ -624,12 +624,12 @@ For "checkbox", "radio", "image" - it defines the value associated with the inpu
 
 Formulários devem possuir lemento com ```type = submit``` ao final, . Por exemplo: 
 
-```
+```HTML
 <input type = "submit" value = "Save">
 ```
 Responsável por submeter os dados do formulário ao servidor com o método correto. 
 
-```
+```HTML
 <form action = "#" method = "GET">
     <label for = "GET-name">Name: </label>
     <input id = "GET-name" type = "text" name = "name">
@@ -651,7 +651,7 @@ O formulário enviou o parâmetro meu_nome associado à variável nome ao servid
 
 Já **POST envia a requisição diretamente ao servidor, sem passagem de parâmetros via url**.
 
-```
+```HTML
 <form action = "#" method = "POST">
     <label for = "GET-name">Name: </label>
     <input id = "GET-name" type = "text" name = "name">
@@ -667,7 +667,7 @@ Já **POST envia a requisição diretamente ao servidor, sem passagem de parâme
 ________________________________________
 * ##### ```<datalist></datalist>```
 Cria uma lista de seleção. 
-```
+```HTML
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -703,7 +703,7 @@ ________________________________________
 
 **label** Amarra a descrição do campo ao campo em sí por seu id, permitindo, por exemplo, que o clicke no label conte como um click no campo. 
 
-```
+```HTML
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -735,7 +735,7 @@ ________________________________________
 ________________________________________
 * ##### ```<select></select>```
 Alternativa ao Datalist, que não dá sugestões enquanto o usuário digita.  Mais usual. 
-```
+```HTML
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -765,7 +765,7 @@ Alternativa ao Datalist, que não dá sugestões enquanto o usuário digita.  Ma
 ________________________________________
 ### Form Completo: 
 
-```
+```HTML
 <!DOCTYPE html>
 <html>
 <head>
@@ -1004,7 +1004,7 @@ ________________________________________
 * ##### ```<details></details>, <summary></summary>```
 Possuem valor semântico, inserindo mais detalhes a um elemento inserido no HTML. 
 
-```
+```HTML
 <details>
         <summary>Documentos necessários</summary>
         <p> Foto 3x4, RG e CPF</p>
@@ -1041,7 +1041,7 @@ Search Engine Optimization. Ajuda a classificar sites quanto a motores de busca,
 - Utilizar ferramentas de SEO checker https://chrome.google.com/webstore/detail/seo-peek/lkkpfhgjmocgneajknedjhodkjkkclod e https://chrome.google.com/webstore/detail/meta-seo-inspector/ibkclpciafdglkjkcibmohobjkcfkaef e https://validator.w3.org/
 
 As ferramentas de SEO checker funcionam apenas em páginas HTTP/HTTPS, ou seja, páginas online e não files locais. Entretanto, se esta página estivesse online
-```
+```HTML
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -1054,7 +1054,7 @@ As ferramentas de SEO checker funcionam apenas em páginas HTTP/HTTPS, ou seja, 
 </html>
 ```
 Teria SEO muito inferior a esta. 
-```
+```HTML
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -1089,7 +1089,7 @@ FONTE: https://www.tutorialspoint.com/What-is-the-difference-between-SVG-and-HTM
 É um container para gráficos em SVG. Permite desenhar imagens vetoriais na tela. A dimensões passadas como parâmetros de **width** e **height** definem a sub-área da tela onde o svg será desenhado. 
 
 
-```
+```HTML
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -1114,7 +1114,7 @@ Há diversas formas prontas já implementadas, e é possível criar formas novas
 * ##### ```<canvas></canvas>```
 Elemento inserido do HTML5. Ao contrário do Canvas, que é um padrão utilizado em múltiplas plataformas, canvas é um elemento típico do HTML. Não é vetorial, e sim composto de bitmap. É exclusivamente editado por Javascript ou outra linguagem de script. 
 
-```
+```HTML
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -1145,7 +1145,7 @@ ________________________________________
 ### Web Local Storage
 HTML5 permite armazenar dados no cliente do usuário sem o uso de Cookies. localStorage armazena dados que ficam guardados no browser mesmo após o término da sessão. sessionStorage armazena dados que são eliminados ao final da sessão. É possível acessar o web storage via: Inspecionar elemento -> application -> Local Storage  ou Session Storage--> file. Se houver botão de atualizar, atualizar.
 
-```
+```HTML
 <!DOCTYPE html>
 <html>
 <head>
@@ -1199,7 +1199,7 @@ TERRAIN (map with mountains, rivers, etc.)
 ```
 O atributo ```zoom``` muda o zoom inicial do mapa.É necessário alterar manualmente o atributo ```LatLng```, para que se adeque ao endereço físico do local. O tamanho do mapa é definido no ``` style="width:800px;height:800px">``` do HTML.
 
-```
+```HTML
 <!DOCTYPE html>
 <html>
 <head>
