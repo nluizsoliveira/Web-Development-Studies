@@ -181,26 +181,27 @@ _____________________________________________________________________
 
 Tem como saída: https://codepen.io/sonneloriginal/pen/EzKMQx
 _____________________________________________________________
-* **Atributo Específico: Selecionadas por ```[]atributo|=valordoatributo{}```. Por exemplo:**
+* **Atributo Específico: Selecionadas por ```[atributo="valordoatributo"]{}```. Por exemplo:**
 
 ```CSS
-//no css
-[type|=text]{
+[type = "text"]{
   background-color: green;
 }
+
 ```
 
  ```HTML
 <html>
-    <head>
-    </head>
-    <body>
-        <input type = "text">
-        <input type="password">
-        <button type = submit>Enviar</button>
-    </body>
+   <head>
+   </head>
+   <body>
+       <input type = "text">
+
+       <input type="password">
+       <button type = submit>Enviar</button>
+   </body>
 </html>
 ```
 
-Tem como saída: https://codepen.io/sonneloriginal/pen/EzKMQx
+Tem como saída: https://codepen.io/sonneloriginal/pen/KLzELY
 _____________________________________________________________
