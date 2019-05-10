@@ -7,13 +7,13 @@ O funcionamento de uma página HTML depende do uso de **tags**, marcadores entre
 
 Por exemplo, a tag que marca o início do HTML é:
 
-```
+```HTML
     <html>
     </html>
 ```
 Já imagens são auto fechadas:
 
-```
+```HTML
     <img src = "./caminho_ou_url_da_imagem">
 ```
 Existem mais de 100 tags que definem o atual HTML5. Entretanto, poucas delas são essenciais e definem a estrutura-base de tóda página HTML. Muitos editores geram automaticamente o seguinte código, tal sua importância:  
@@ -44,19 +44,19 @@ Define URL base do documento, o que facilita a atribuição de urls via href . *
 ________________________________________
 * ##### ```<link>```
 Utilizada para incluir recursos no documento. Por exemplo, 
-```
+```HTML
         <link href="./main.css" rel="stylesheet">
 ```
 Indica que no caminho **href** = ./main.css há um documento a ser incluído, e seu atributo **ref** indica que trata-se de um stylesheet. Pode haver múltiplos links por documento. 
 ________________________________________
 * ##### ```<meta>```
 Passa meta-informações sobre o **funcionamento da página** ao navegador. Permite, por exemplo, indicar que a página possuirá padrão de escrita (charset) **unicode** e não ascii, que seria o padrão-base, como em: 
-```
+```HTML
          <meta charset="UTF-8">
 ```
 Também é possível indicar tags (No contexto de palavras-chave, e não html) relacionadas a SEO(Search Engine Optimization), permitindo que motores de busca cataloguem melhor e consequentemente deem prioridade à página em seu serviço.
 
-```
+```HTML
 <meta name = "keywords" content = "HTML,CSS,Tags">
 <meta name = "description" content = "Resumo de HTML">
 <meta name = "author" content = "Nelson Luiz Oliveira">
@@ -182,7 +182,7 @@ ________________________________________
 ________________________________________
 * ##### Títulos:
 São definidos pela letra h seguida de um número que indica sua relevância na página. É recomendado apenas um ```<h1>``` por página, bem como evitar abusos de ```<h2>```;
-```
+```HTML
 <h1>Título h1</h1>
 <h2>Título h2</h2>
 <h3>Título h3</h3>
@@ -247,7 +247,7 @@ Marca mudança de significado semântico. Pode ser utiliada em barras horizontai
  * ##### ```<div> </div>```
 Caixa vazia sem formatação, utilizada para agrupá-los em um mesmo conteiner editável por CSS.
 
-```
+```HTML
 <html>HTML
     <head>
     </head>
@@ -364,7 +364,7 @@ ________________________________________
  * ##### ```<abbr> </abbr>```
 Dá significado semântico à abreviação, fazendo com que buscadores associem sua sigla ao termo completo. Também mostra abreviação ao passar mouse por cima da sigla.  
  
- ```
+ ```HTML
  <p>Nelson é estudante do <abbr title = "Institutos de Ciências Matemáticas e Computação">ICMC</abbr></p>
  ```
 <p>Nelson é estudante do <abbr title = "Institutos de Ciências Matemáticas e Computação">ICMC</abbr></p>
@@ -372,7 +372,7 @@ Dá significado semântico à abreviação, fazendo com que buscadores associem 
 ________________________________________
 * ##### ```<b> </b>```
 **b** vem de bold. Destaca palavras **importantes** do texto. 
-```
+```HTML
 <p>A palavra mais importante da frase é <b>esta</b></p>
 ```
 <p>A palavra mais importante da frase é <b>esta</b></p>
@@ -381,7 +381,7 @@ ________________________________________
 * ##### ```<br>```
 Tag de quebra de linha.
 
-```
+```HTML
 <p> Linha um <br> Linha dois</p>
 ```
 <p> Linha um <br> Linha dois</p>
@@ -407,7 +407,7 @@ Ao salvar o arquivo.html e abrí-lo no navegador, inspecionando o elemento, é p
 ________________________________________
 * ##### ```<dfn> </dfn>```
 Permite criar definição de um termo e que buscadores identifiquem seu site como provedor de uma definição ao mesmo. 
-```
+```HTML
 <p>O <dfn id = "def-dns">DNS</dfn> é a sigla em inglês para Domain Name System (Sistema de Nomes e Domínios, em português), responsável por descodificar os nomes dos domínios dos sites que as pessoas digitam nos navegadores web em números IP.</p>
 ```
 
@@ -456,7 +456,7 @@ ________________________________________
 * ##### ```<video> </video> e <iframe> </iframe>```
 Insere um vídeo na página. Para vídeos no youtube. utilizar iframe. 
 
-```
+```HTML
 <iframe width="420" height="315"
 src="https://www.youtube.com/watch?v=r1LNxYYrLTM">
 </iframe>
@@ -466,7 +466,7 @@ ________________________________________
 * ##### ```<embed> </embed>```
 Embed permite o uso de conteúdos de **sites externos** na página. Por exemplo, é possível incorporar vídeos do youtube já com as configuraçõe ideais, utilizando o código gerado por share->embed da própria plataforma. 
 
-```
+```HTML
 <iframe width="560" height="315" src="https://www.youtube.com/embed/r1LNxYYrLTM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ```
 (Código não funciona no github, testar em meio externo).
@@ -1191,7 +1191,7 @@ ____________________________________
 
 
 O atributo ```ROADMAP``` em ```mapTypeId: google.maps.MapTypeId.ROADMAP``` pode ser modificado, o que cria diferentes tipos de mapa.
-```
+```HTML
 ROADMAP (normal, default 2D map)
 SATELLITE (photographic map)
 HYBRID (photographic map + roads and city names)
