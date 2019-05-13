@@ -205,3 +205,45 @@ _____________________________________________________________
 
 Tem como saída: https://codepen.io/sonneloriginal/pen/KLzELY
 _____________________________________________________________
+### Propriedades de fonte e texto: 
+
+* **font-size**
+Modifica o tamanho do texto. Cada tag tem um tamanho padrão específico. h1's, por exemplo, 16 pixels. ```font-size: 100%``` setta o tamanho atual a uma porcentagem do padrão. Também é possível diretamente settar o tamanho, como em  ```font-size: 20px```.  **em** é a unidade de medida recomendada para font-size, e representa a proporção em relação ao tamanho padrão da fonte. (1em = 100%, 2em = 200%, etc).
+
+
+* **font-weight**
+Permite modificar a espessura do texto. ```font-weight: bold```deixa o texto em negrito, e ```font-weight: normal``` volta o texto à espessura padrõa.
+
+* **text-align** 
+Especifica o alinhamento do texto. ```text-align: center``` o centraliza. É possível utilizar **center, right, justify, left e inherit**.
+
+* **text-transform** 
+Muda a formatação do texto. ```text-transform: uppercase``` e ```text-transform: lowercase``` são exemplos de uso. 
+
+* **color**
+Modifica a cor do texto. ```color: red``` muda a cor do texto para vermelho. 
+
+Mais exemplos em https://www.w3schools.com/css/css_text.asp
+
+_________________________________________________
+### Cores em CSS
+Há **três** maneiras de se especificar  cor em css: **nome**, **hexadecimal** e **rgb**.
+
+<img src= "https://i.imgur.com/jSoEyVf.png">
+ Retirado de: https://www.quackit.com/css/css_color_codes.cfm
+      
+O hexadecimal começa em ```#```, e em o formado rrggbb, ou seja, os primeiros dois dígitos correspondem ao vermelho em hexadecimal, os dos seguintes, verde e os últimos azul (0 a f, ou seja, 0 a 255 em cada atributo). RGB faz o mesmo, mas com o formato ```rgb(rr,gg,bb)```
+
+A seguinte extensão permite armazenar a cor de qualquer área de uma webpage: https://chrome.google.com/webstore/detail/colorzilla/bhlhnicpbhignbdhedgjhgdocnmhomnp
+
+_________________________________________________
+### Box Model e posicionamento
+Área em torno de todo objeto, dividida em **padding, border e margin**.
+
+* padding: Área entre o elemento e a borda.
+* margin: Área entre a borda e o fim do elemento. 
+<img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/W3C_box_model.svg/1280px-W3C_box_model.svg.png">
+
+É importante notar que ao se atribuir, por exemplo, ```margin: 10px```, este atributo será modificado em **todas as dimensões da imagem**. Ou seja, margin-top, margin-right, margin-bottom e margin-left são settadas a 10. É possível modificá-los individualmente. 
+
+(TERMINAR ÁREA DE BOX MODEL, INCOMPLETA NO MOMENTO)                           
