@@ -1,5 +1,5 @@
 
-* Possui tipo boolean, que retorna true/false. boolean x = (3 > 4) retorna false. Int e boolean são incompatíveis.
+### Possui tipo boolean, que retorna true/false. boolean x = (3 > 4) retorna false. Int e boolean são incompatíveis.
 
 ```java
         public class MyClass {
@@ -23,7 +23,7 @@ error: incomparable types: boolean and int
 ```
 Portanto, true não é nem 0, nem 1, e sim true. 
 _____________________________________________________________________________________________________
-* Capacidade dos tipos : 
+### Capacidade dos tipos : 
 
 | Tipo         | Bytes | Grandeza | Intervalo                       |
 |--------------|-------|----------|---------------------------------|
@@ -42,7 +42,7 @@ ________________________________________________________________________________
 
 
 
-* Pode-se implementar os operadores -- e ++ prefixados (antes da variável) ou pós fixados (após a variável)
+### Pode-se implementar os operadores -- e ++ prefixados (antes da variável) ou pós fixados (após a variável)
 
 ```java 
 public class MyClass {
@@ -72,7 +72,7 @@ public class MyClass {
 ```
 Compila, executa e imprime ```Y```. Pode ser útil para saídas complicadas.
 _____________________________________________________________________________________________________
- * Assim como C, possui operadores lógicos AND (&) e OR (|) e XOR (^); 
+ ### Assim como C, possui operadores lógicos AND (&) e OR (|) e XOR (^); 
 
 ```java		
 public class MyClass {					
@@ -190,7 +190,7 @@ o faria.
 
 _____________________________________________________________________________________________________
 
-* Java faz castings automáticos, o que pode ser problemático.
+### Java faz castings automáticos, o que pode ser problemático.
 
 É recomendado forçar castings.Operações de + , - , * e / **binárias** convertem, apenas naquela expressão (e não no programa todo)
 		char, bytes e shorts para int.
@@ -274,7 +274,7 @@ Mesmo sendo do mesmo tamanho, float não é automaticamente convertido em int, n
 _____________________________________________________________________________________________________
 
 
- * Leitura de caracteres 
+### Leitura de caracteres 
 
 
 System.int complementa System.out, sendo o objeto de entrada ligado ao teclado.  Já read() sempre retorna inteiros, por isso é necessário realizar o cast. 
@@ -300,7 +300,7 @@ public class MyClass {
 
 throws java.io.IOException  É uma cláusula que trata possíveis erros de entrada, sendo necessária para System.in.read() funcionar. Explicação de cláusulas serão dadas (muito) mais a frente.
 
-## POO
+# POO
 ```
 Bibliografia: 
 - Curso em vídeo (Youtube)
@@ -309,7 +309,7 @@ Bibliografia:
 ```
 _________________________________________________________
 
-* Objeto vs Classe 
+### Objeto vs Classe 
 
 **Classe** define os atributos e métodos comuns que serão compartilhados por um objeto. 
 **Objeto** é uma instância de uma classe. 
@@ -328,7 +328,7 @@ Ex: Caneta
 ```
 
 _________________________________________________________
-* Public vs Private vs Protected
+### Public vs Private vs Protected
 
 **public (+)** acessível por qualquer classe do programa.
 
@@ -374,7 +374,7 @@ Carga é **protegida**. Como **c1 foi instanciada em Main**, c1.carga passa a se
 O exemplo utilizou variáveis, mas o mesmo vale para métodos. 
 __________________________________________________________
 
-* Setters, Getters e Constructors. Especificador Static.
+### Setters, Getters e Constructors. Especificador Static.
 
 **Setters, Getters e Constructors são métodos** que **permitem a classes externas solicitar retornos/modificações de atributos internos**.
 
@@ -473,5 +473,137 @@ Ponta da caneta: 0.7
 Quantidade de canetas: 2
 ```
 __________________________________________________________
+### Herança 
+Permite **estender** classes existentes com novas classes, que possuem seus próprios métodos e atributos mas que, ao mesmo tempo, **herdam também os pertencentes à classe herdada**.  A extensão é feita pelo atributo ```extends``` na declaração da nova classe. 
+
+Tome a classe animal a seguir. 
+
+```java
+class animal{
+  private double peso;
+  private double altura;
+  private String nome;
 
 
+  public animal(double meu_peso, double minha_altura, String meu_nome){
+    this.peso = meu_peso;
+    this.altura = minha_altura;
+    this.nome = meu_nome;
+  }
+
+  public double getPeso(){
+    return this.peso;
+  }
+  
+  public double getAltura(){
+    return this.altura;
+  }
+
+  public String getNome(){
+    return this.nome;
+  }
+
+  public void setPeso(double meu_peso){
+    this.peso = meu_peso;
+  }
+
+  public void setAltura(double minha_altura){
+    this.altura = minha_altura;
+  }
+
+  public void setNome(String meu_nome){
+    this.nome = meu_nome;
+  }
+  
+  public void imprime(){
+        System.out.println(this.nome + " pesa " + this.peso + " kilos e tem " + this.altura + " metros de altura");
+  }
+}
+
+```
+
+declarar 
+
+```java
+public class cachorro extends animal{
+}
+```
+
+gera o erro 
+
+<img src = "https://i.imgur.com/hDC2Ll7.png">
+
+Isto por que **não há construtor default na classe pai**, bem como **não há construtor que chame o construtor existente na classe pai**. Qualquer uma das duas soluções resolverá o problema. Uma boa solução é criar a classe desta maneira:
+
+```java
+public class cachorro extends animal{
+    private int num_patas;
+
+    public cachorro(double meu_peso, double minha_altura, String meu_nome) {
+        super(meu_peso, minha_altura, meu_nome);
+        this.num_patas = 4;
+    }
+   
+}
+
+```
+Assim, economiza-se linhas utiliando o construtor da classe pai com o comando **super**, ao mesmo tempo em que setta-se a característica individual do cachorro (ter 4 patas).
+
+Também é importante notar que **Os atributos herdados da classe pai são privados a ela, portanto, só podem ser acessados via getters e setters**. 
+
+```java
+public class cachorro extends animal{
+    private int num_patas;
+
+    public cachorro(double meu_peso, double minha_altura, String meu_nome) {
+        super(meu_peso, minha_altura, meu_nome);
+        this.num_patas = 4;
+    }
+   
+    public void imprime(){
+        System.out.println(this.nome + " é um" +  this.getClass().getSimpleName() + " pesa " + this.peso + " kilos e tem " + this.altura + " metros de altura");
+    }
+}
+```
+
+gera o errro
+<img src = "https://i.imgur.com/gZFnXGc.png">.
+
+
+Para corrigí-lo, basta:
+```java
+public class cachorro extends animal{
+    private int num_patas;
+
+    public cachorro(double meu_peso, double minha_altura, String meu_nome) {
+        super(meu_peso, minha_altura, meu_nome);
+        this.num_patas = 4;
+    }
+   
+    public void imprime(){
+        System.out.println(this.getNome() + " é um" +  this.getClass().getSimpleName() + " pesa " + this.getPeso() + " kilos e tem " + this.getAltura() + " metros de altura");
+    }
+}
+```
+
+Java, entretanto, promove a anotação **```@override```, que permite checkar em tempo de compilação se, de fato, o método contem o mesmo nome e argumentos do da classe pai, o que facilita a depuaração**.
+
+Portanto, a **A MANEIRA COM MELHOR PRÁTICAS É**
+
+```java
+public class cachorro extends animal{
+    private int num_patas;
+
+    public cachorro(double meu_peso, double minha_altura, String meu_nome) {
+        super(meu_peso, minha_altura, meu_nome);
+        this.num_patas = 4;
+    }
+   
+    
+    @Override
+    public void imprime(){
+        System.out.println(this.getNome() + "é um" +  this.getClass().getSimpleName() + " pesa " + this.getPeso() + " kilos e tem " + this.getAltura() + " metros de altura");
+
+    }
+}
+```
