@@ -1,0 +1,10 @@
+body{
+    padding: 58px;
+    background-color: rgb(255, 175, 109);
+    font-family: sans-serif;
+}
+
+#container{
+    display: flex;
+    justify-content: flex;
+}
