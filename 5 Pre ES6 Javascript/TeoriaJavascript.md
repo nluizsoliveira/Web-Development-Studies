@@ -1,4 +1,4 @@
-Este material em como premissa o conhecimento prévio de outra linguagem de programação, bem como familiarização com lógica de programação, algoritmos, memória, POO, estruturas,  funções e outros conceitos básicos comuns a diversas outras linguagens de programação. Se propõe a ser um material de transição ao javascript, e não de introdução a programação como um todo.   
+Este material tem como premissa o conhecimento prévio de outra linguagem de programação, bem como familiarização com lógica de programação, algoritmos, memória, POO, estruturas,  funções e outros conceitos básicos comuns a diversas outras linguagens de programação. Se propõe a ser um material de transição ao javascript, e não de introdução a programação como um todo.   
 
 # Javascript
 Linguagem de programação interpretada de alto nível <a href = "https://stackoverflow.com/questions/32476680/what-does-it-mean-that-javascript-is-dynamic">dinâmica</a>, <a href = "https://stackoverflow.com/questions/964910/is-javascript-an-untyped-language">fracamente tipada</a>,
@@ -110,7 +110,46 @@ true + undefined = NaN
 
 
 ## Objetos em Javascript
-São declarados entre chaves ```{}```, com a sintaxe ```nome do elemento: elemento```. Cada elemento é separado por uma vírgula, exceto o último.  Funções podem ser elementos de objetos, sendo declaradas com ```nomeDaFuncao: function(){}``` . 
+Em JS, quase tudo é um Object, exceto os tipos primitivos. Ainda assim, alguns tipos primitivos como Booleans, Numbers e Strings podem ser transformados em primitivos por meio de **New**. **ENTRETANTO, ESTA É UMA SINTAXE NÃO RECOMENDADA, DEVIDO A SEU FUNCIONAMENTO CONTRA-INTUITIVO**.  
+
+```js
+var my_number = 3; 
+var my_object_number = new Number(3);
+
+var my_object ={
+  number: 3
+}
+
+function increments_number(numero){
+      numero = numero + 1; 
+}
+
+function increments_object(number){
+  number.number++;
+}
+
+increments_number(my_number);
+increments_number(my_object_number);
+increments_object(my_object);
+
+console.log("primitive number =  3, which increased by a function  = " + my_number);
+console.log("object Number =  3 , which increased by a function = " + my_object_number)
+console.log("prop number of a hardcoded object = 3, which increased by a function = " + my_object.number)
+```
+
+imprime
+
+```
+primitive number =  3, which increased by a function  = 3
+object Number =  3 , which increased by a function = 3
+prop number of a hardcoded object = 3, which increased by a function = 4
+```
+
+Em suma, o funcionamento esperado é alcançado via a criação de um novo objeto. 
+
+### Criando um novo objeto em javascript
+
+Objetos são declarados entre chaves ```{}```. Seus atributos, com a sintaxe ```nome do elemento: elemento```. Cada elemento é separado por uma vírgula, exceto o último.  Métodos podem ser elementos de objetos, sendo declaradas com ```nomeDaFuncao: function(){}``` . 
 
 Elementos do objeto, fora dele próprio, são acessados com ```objeto.nomeDoElemento```. Elementos do objeto internos a ele são acessados com ```this.nomeDoElemento```(Como em funções internas ao mesmo). 
 ```javascript
