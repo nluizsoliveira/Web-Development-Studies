@@ -99,8 +99,10 @@ Isto se deve ao conceito de **modularização** de node
 
 ## Node Modules 
 
-Em node, cada arquivo possui um **módulo**, cujas variáveis e métodos são privados (Acessíveis) inicialmente apenas nele próprio. 
+Em node, cada arquivo possui um **módulo**, cujas variáveis e métodos são privados (Acessíveis) inicialmente apenas por ele  próprio. 
+
 <img src = "https://i.imgur.com/Z24wYRt.png">
+
 
 ```module``` é um objeto, que **não pertence** a global. 
 
@@ -143,16 +145,18 @@ Module {
 Para tornar o seu conteúdo público, deve-se **exportar** o módulo.  
 
 ### Exportando um módulo
-**```module.exports```** cria uma variável/função que será exportada, e a assimila a uma variável/função do módulo.
+
+* **```module.exports```** cria uma variável/função que será exportada, e a assimila a uma variável/função do módulo.
 
 ```module.exports.nome_como_será_exportado = variavel_do_modulo```
 
-
+Suponha um arquivo **library.js**, que exportará variáveis **my_a** e **my_b**, bem como a função **library_print**. 
 
 ```js
 //library.js
 var my_a = 3;
 var my_b = 4;
+var my_c = 5; 
 
 function library_print(a,b){
     c = a + b;
@@ -163,6 +167,107 @@ function library_print(a,b){
 module.exports.any_name_a = my_a; //posso usar qualquer nome 
 module.exports.my_b = my_b;       //posso usar mesmo nome
 module.exports.library_prints = library_print; //posso exportar funcoes
+```
+
+
+### Importando um módulo
+* **```require('path')```** é o método de Node que importa um módulo. Possui como **argumento** o **caminho para o arquivo** que será importado.  
+
+Suponha um arquivo **app.js**, que importará as variáveis e funções **exportadas de library.js**, este, na mesma pasta de app.js.
+
+```js
+var library = require('./library.js') //nome qualquer, não precisa ser o mesmo do arquivo
+
+console.log(library)
+```
+
+imprime
+
+```js
+{ any_name_a: 3,
+  my_b: 4,
+  library_prints: [Function: library_print] }
+```
+Um JSON que indica os atributos e métodos disponibilizados por library. Note que **my_c não foi exportada**, e portanto **não é acessível** por arquivos que importam library. 
+
+É possível acessar os métodos/atributos de library com o operador **```.```** :  
+```js
+//app.js
+var library = require('./library.js') //nome qualquer, não precisa ser o mesmo do arquivo
+
+console.log('a importado de library:' + library.any_name_a)
+console.log('b importado de library: ' + library.my_b)
+console.log('Função importada de library que soma os números importados: ' + library.library_prints(library.any_name_a, library.my_b))
+```
+
+imprime: 
+
+```
+a importado de library:3
+b importado de library: 4
+7
+Função importada de library que soma os números importados: 7
+```
+
+É importante notar que **require não é um construtor!**
+
+```js
+//app.js
+let instA = require('./library.js')
+let instB = require('./library.js')
+
+instA.my_b = 111;
+instB.my_b = 666;
+
+console.log(instA.my_b);
+console.log(instB.my_b);
+```
+tem como saída: 
+
+```
+666
+666
+```
+
+Ou seja, **instâncias geradas a partir do require de um mesmo arquivo apontam para o mesmo objeto!!!**. 
+
+O resultado esperado é obtido modificando-se library, que terá uma **função que retorna um objeto**: 
+
+Em library: 
+```js
+//library.js
+
+function library_generates_object(){
+    let my_obj = {
+        my_a: 3,
+        my_b: 4, 
+    }
+    return my_obj;
+}
+
+module.exports.library_generates_object =  library_generates_object
+```
+
+Em app: 
+```js
+//app.js
+let library = require('./library.js');
+
+var instA = library.library_generates_object();
+var instB = library.library_generates_object();
+
+instA.my_a = 111;
+instB.my_a = 666;
+
+console.log(instA.my_a)
+console.log(instB.my_a )
+```
+Que agora imprime corretamente: 
+
+
+```
+111
+666
 ```
 <!---
 ## Servidor em node vs servidor "tradicional"
