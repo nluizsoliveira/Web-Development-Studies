@@ -1,11 +1,10 @@
 //library.js
 
-function library_generates_object(){
-    let my_obj = {
-        my_a: 3,
-        my_b: 4, 
+class my_class{
+    constructor(){
+        this.my_a = 2;
+        this.my_b = 3; 
     }
-    return my_obj;
 }
 
-module.exports.library_generates_object =  library_generates_object
+module.exports.library_generates_object =  my_class

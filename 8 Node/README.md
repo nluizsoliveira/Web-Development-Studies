@@ -234,6 +234,7 @@ Ou seja, **instâncias geradas a partir do require de um mesmo arquivo apontam p
 O resultado esperado é obtido modificando-se library, que terá uma **função que retorna um objeto**: 
 
 Em library: 
+
 ```js
 //library.js
 
@@ -262,6 +263,7 @@ instB.my_a = 666;
 console.log(instA.my_a)
 console.log(instB.my_a )
 ```
+
 Que agora imprime corretamente: 
 
 
@@ -269,6 +271,44 @@ Que agora imprime corretamente:
 111
 666
 ```
+
+Ou ainda, utilizar a sintaxe de **classes**: 
+
+Em library.js: 
+```js
+//library.js
+
+class my_class{
+    constructor(){
+        this.my_a = 2;
+        this.my_b = 3; 
+    }
+}
+module.exports.library_generates_object =  my_class
+```
+
+Em app.js: 
+
+```js
+//app.js
+let library = require('./library.js');
+
+let instA = new library.library_generates_object();
+let instB = new library.library_generates_object();
+
+instA.my_a = 111;
+instB.my_a = 666;
+
+console.log(instA.my_a)
+console.log(instB.my_a)
+```
+Que também retorna corretamente: 
+
+```
+111
+666
+```
+
 <!---
 ## Servidor em node vs servidor "tradicional"
 
