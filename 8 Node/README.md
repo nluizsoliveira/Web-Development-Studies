@@ -143,7 +143,10 @@ Module {
 Para tornar o seu conteúdo público, deve-se **exportar** o módulo.  
 
 ### Exportando um módulo
-**```module.exports```** exporta uma variável ou função de um módulo. 
+**```module.exports```** cria uma variável/função que será exportada, e a assimila a uma variável/função do módulo.
+
+```module.exports.nome_como_será_exportado = variavel_do_modulo```
+
 
 
 ```js
