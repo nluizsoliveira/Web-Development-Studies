@@ -34,14 +34,70 @@ fs.readFile('/Users/joe/test.txt', (err, data) => {
 })
 ```
 
-Utiliza o 
+Utiliza o ```readFile```, que é definido pelo Node, não sendo disponível em navegadores. 
 
+## window vs global : Escopo global 
+
+**window** é o objeto global que representa uma janela em navegadores. 
+
+```console.log()``` é uma abreviação de ```window.console.log()```, por exemplo. Além disso, variáveis declaradas com **var** são, na verdade, adicionadas a window. Por exemplo: 
+
+```js
+var my_var = 3;
+console.log(window.my_var)
+```
+
+imprime 
+
+```
+3
+```
+
+Este é o motivo de se ouvir que "variáveis declaradas com var são globais". 
+
+```js
+let my_var = 3;
+console.log(window.my_var)
+```
+
+não gera o mesmo resultado, imprimindo 
+
+```
+undefined
+```
+
+node **não** possui o objeto window. Ao invés disso, possui o objeto **global**. 
+
+```js
+global.console.log("oi")
+```
+
+também imprime 
+
+```
+oi
+```
+Entretanto, variáveis decladaras com **var** NÃO são adicionadas ao objeto global em node. 
+
+```js
+var my_var = 3;
+global.console.log(my_var)
+```
+
+imprime
+
+```
+undifined
+```
+
+<!---
 ## Servidor em node vs servidor "tradicional"
 
 Node utiliza a abordagem **non-blocking** para atingir baixa latência mesmo com altas taxas de transferência (throughput).
 
 Em **servidores "tradicionais"**, cada nova requisição gera (spawns) uma **nova thread**, ou mesmo clona (forks) o processo atual em um **novo processo**, que lidam e respondem a mesma. Na prática, a criação de novas threads é menos custosa (Em memória e CPU Overhead) que a criação de novos processos, mas, ainda assim, os ciclos gastos com **thread scheaduling** e **context switching** podem gerar sobrecarga em sistemas com muitas threads, o que aumenta a latência, impondo limites em escalabilidade e taxa de transferência. 
 
+ -->
 ## Fontes: 
 .1 https://www.infoworld.com/article/3210589/what-is-nodejs-javascript-runtime-explained.html
 
