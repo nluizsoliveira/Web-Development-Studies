@@ -36,7 +36,7 @@ fs.readFile('/Users/joe/test.txt', (err, data) => {
 
 Utiliza o ```readFile```, que é definido pelo Node, não sendo disponível em navegadores. 
 
-## window vs global : Escopo global 
+## window vs global e let vs var: Escopo global 
 
 **window** é o objeto global que representa uma janela em navegadores. 
 
@@ -53,9 +53,12 @@ imprime
 3
 ```
 
-Este é o motivo de se ouvir que "variáveis declaradas com var são globais". 
+Este é o motivo de se ouvir que "variáveis declaradas com var são globais". Também é o motivo de **não ser recomendado** o uso de var, pois diferentes arquivos podem possuir variáveis com mesmo nome, que são sobescritas, o que pode gerar comportamentos inesperados. 
+
+Ao invés disso, se recomenda o uso de **let**
 
 ```js
+//browser javascript
 let my_var = 3;
 console.log(window.my_var)
 ```
@@ -69,6 +72,7 @@ undefined
 node **não** possui o objeto window. Ao invés disso, possui o objeto **global**. 
 
 ```js
+//node javascript
 global.console.log("oi")
 ```
 
@@ -80,6 +84,7 @@ oi
 Entretanto, variáveis decladaras com **var** NÃO são adicionadas ao objeto global em node. 
 
 ```js
+//node javascript
 var my_var = 3;
 global.console.log(my_var)
 ```
@@ -90,6 +95,72 @@ imprime
 undifined
 ```
 
+Isto se deve ao conceito de **modularização** de node
+
+## Node Modules 
+
+Em node, cada arquivo possui um **módulo**, cujas variáveis e métodos são privados (Acessíveis) inicialmente apenas nele próprio. 
+<img src = "https://i.imgur.com/Z24wYRt.png">
+
+```module``` é um objeto, que **não pertence** a global. 
+
+```js
+console.log(global.module)
+```
+
+retorna
+
+```
+undefined
+```
+
+Já 
+
+```js
+console.log(module)
+```
+
+retorna
+
+```js
+Module {
+  id: '.',
+  exports: {},
+  parent: null,
+  filename:
+   '/home/USUARIOS/9793502/Web-Development-Studies/8 Node/test.js',
+  loaded: false,
+  children: [],
+  paths:
+   [ '/home/USUARIOS/9793502/Web-Development-Studies/8 Node/node_modules',
+     '/home/USUARIOS/9793502/Web-Development-Studies/node_modules',
+     '/home/USUARIOS/9793502/node_modules',
+     '/home/USUARIOS/node_modules',
+     '/home/node_modules',
+     '/node_modules' ] }
+```
+
+Para tornar o seu conteúdo público, deve-se **exportar** o módulo.  
+
+### Exportando um módulo
+**```module.exports```** exporta uma variável ou função de um módulo. 
+
+
+```js
+//library.js
+var my_a = 3;
+var my_b = 4;
+
+function library_print(a,b){
+    c = a + b;
+    console.log(c);
+    return c;
+}
+//module.exports.nome_como_sera_exportado = nome_da_variável_no_módulo
+module.exports.any_name_a = my_a; //posso usar qualquer nome 
+module.exports.my_b = my_b;       //posso usar mesmo nome
+module.exports.library_prints = library_print; //posso exportar funcoes
+```
 <!---
 ## Servidor em node vs servidor "tradicional"
 
