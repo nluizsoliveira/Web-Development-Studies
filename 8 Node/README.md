@@ -38,6 +38,7 @@ Utiliza o ```readFile```, que é definido pelo Node, não sendo disponível em n
 
 ## window vs global e let vs var: Escopo global 
 
+### Window: Escopo global em navegadores
 **window** é o objeto global que representa uma janela em navegadores. 
 
 ```console.log()``` é uma abreviação de ```window.console.log()```, por exemplo. Além disso, variáveis declaradas com **var** são, na verdade, adicionadas a window. Por exemplo: 
@@ -69,6 +70,8 @@ não gera o mesmo resultado, imprimindo
 undefined
 ```
 
+### Global: Escopo global em node
+
 node **não** possui o objeto window. Ao invés disso, possui o objeto **global**. 
 
 ```js
@@ -76,12 +79,32 @@ node **não** possui o objeto window. Ao invés disso, possui o objeto **global*
 global.console.log("oi")
 ```
 
-também imprime 
+imprime 
 
 ```
 oi
 ```
-Entretanto, variáveis decladaras com **var** NÃO são adicionadas ao objeto global em node. 
+
+Ou seja, console é dos objetos com escopo padrão global em node. Seguem alguns dos principais objetos globais, isto é, acessíveis por todos os módulos via **```global.nome_do_objeto_ou_método```**: 
+
+* **<a href = "https://nodejs.org/api/console.html" >console </a>**
+
+  Utilizado para imprimir stderr e stdout: Similar ao console de javascript em navegadores. Tente utilizar ```console.log(global.console)```
+* **<a href = "https://nodejs.org/api/process.html#process_process">process**</a>
+
+  Objeto que permite controlar e obter informações sobre o processo node.js atual. Tente utilizar ```console.log(global.process)```
+* **<a href = "https://nodejs.org/api/buffer.html" >Buffer</a>**
+
+  Objeto para manipulação de streams de dados binários. Tente utilizar  ```console.log(global.Buffer)```
+* **<a href = "https://nodejs.org/api/timers.html#timers">método globais com timers</a>** : Série de métodos globais para agendamento de chamada de métodos com base em algum período de tempo. Destacam-se: 
+  * **setImmediate(callback[, arg][, ...])**
+  * **setInterval(callback, delay[, arg][, ...])**
+  * **setTimeout(callback, delay[, arg][, ...])**
+  * **clearImmediate(immediateObject)**
+  * **clearInterval(intervalObject)**
+  * **clearTimeout(timeoutObject)**
+
+Ao contrário dos navegadores, em node variáveis decladaras com **var** NÃO possuem escopo global. 
 
 ```js
 //node javascript
@@ -95,7 +118,7 @@ imprime
 undifined
 ```
 
-Isto se deve ao conceito de **modularização** de node
+Isto se deve ao conceito de **modularização** de node. 
 
 ## Node Modules 
 
@@ -115,32 +138,25 @@ retorna
 ```
 undefined
 ```
+Os seguintes objetos estão disponíveis em todos os módulos, mas **não são globais**, pois tratam exclusivamente do módulo atual: 
 
-Já 
 
-```js
-console.log(module)
-```
+* **__dirname**
 
-retorna
+  String que contém o nome do diretório do módulo
+* **__filename**
+  
+  String que contém o nome do arquivo que comporta o módulo 
+* **exports**
 
-```js
-Module {
-  id: '.',
-  exports: {},
-  parent: null,
-  filename:
-   '/home/USUARIOS/9793502/Web-Development-Studies/8 Node/test.js',
-  loaded: false,
-  children: [],
-  paths:
-   [ '/home/USUARIOS/9793502/Web-Development-Studies/8 Node/node_modules',
-     '/home/USUARIOS/9793502/Web-Development-Studies/node_modules',
-     '/home/USUARIOS/9793502/node_modules',
-     '/home/USUARIOS/node_modules',
-     '/home/node_modules',
-     '/node_modules' ] }
-```
+  Objeto que permite exportar partes do módulo atual, para que outros módulos o usem 
+* **module**
+
+  Objeto que referencia o próprio módulo
+* **require()**
+
+  Método que permite importar outros módulos, JSONs e outros arquivos 
+
 
 Para tornar o seu conteúdo público, deve-se **exportar** o módulo.  
 
