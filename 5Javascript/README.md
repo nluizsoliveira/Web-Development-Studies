@@ -634,6 +634,7 @@ Animal {
 
 
 ### ```this```
+Explicação sobre `this` e `arrow functions` por <a href = 'https://github.com/Jeansidharta'>Jean Sidartha</a>
 
 Em Javascript, o `this` é uma variavel especial, que muda dependendo de qual função está sendo executada nesse momento. O propósito do `this` é permitir que métodos de objetos possam acessar informações do objeto. Por exemplo, dentro de um construtor de uma classe, o `this` tem o valor do objeto que esta sendo criado, e dentro de um método de uma classe, o `this` tem o valor do objeto que chamou o método:
 
