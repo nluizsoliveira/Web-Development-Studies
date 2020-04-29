@@ -441,7 +441,7 @@ No qual o usuário digitou ```'Texto Digitado'```
 
     <img src = 'https://i.imgur.com/Pqd48Or.png'>
 
-# Lição de casa:
+## Lição de casa:
 Crie uma TodoList apenas com JS nativo. 
 - O botão deve adicionar um novo elemento à lista
 - Desafio: Ao invés de adicionar apenas um novo parágrafo, adicione um parágrafo e um botão de deletar. O botão deve deletar apenas o parágrafo ao qual foi criado junto. 
@@ -459,3 +459,276 @@ Crie uma TodoList apenas com JS nativo.
     </body>
 </html>
 ```
+# Objetos
+Tudo que não é um tipo primitivo (`string`, `number`, `boolean` ou `undefined`) é um **Objeto**.
+- 0: **container** com atributos e métodos
+- 1: Emula comporamento semelhante à **referência**, o que não existe de fato pois **javascript não tem ponteiros**.
+- 2: Emula passagem via referencia para funções
+- 3: Reuso de código com **classes**
+
+## 0. 'Containers com atributos e métodos' :  Instanciando objeto
+- Objetos são instanciados entre chaves `{}`.
+- Cada elemento deve ser declarado no formato `key:value`
+- Todos os elementos, menos o último, são terminados em `,`
+
+    ```js
+    let pitty = {
+        especie: 'cao',
+        nasceu: 2004,
+        viva_ate: 2020,
+
+        calcula_idade: function(){
+            return this.viva_ate - this.nasceu
+        }
+    }
+    ```
+- Imprimir um objeto imprime seus **métodos** (Funções) e **atributos** (variáveis ou outros objetos):
+    ```js
+    console.log(pitty)
+    ```
+
+    imprime
+
+    ```js
+    {
+        especie: 'cao',
+        nasceu: 2004,
+        viva_ate: 2020,
+        calcula_idade: [Function: calcula_idade]
+    }
+    ```
+- Para acessar um atributo, utiliza-se o operador ponto `.attribute`
+    ```js
+    console.log(pitty.especie)
+    // Imprime cao
+    ```
+- Para executar um método, utiliza-se a sintaxe `.method()`
+    ```js
+    console.log(pitty.calcula_idade())
+    //imprime 16
+    ```
+
+
+## 1 : Emular uma referência
+- Utilizando tipos primitivos:
+    ```js
+    let a = 'a'
+    let a_copy = a
+
+    console.log(a, a_copy)
+
+    a = 'b'
+
+    console.log(a, a_copy)
+    ```
+
+    imprime
+
+    ```
+    a a
+    b a
+    ```
+
+- Utilizando objetos:
+    ```js
+    let a = {char: 'a'}
+    let a_copy = a
+
+    console.log(a, a_copy)
+
+    a.char = 'b'
+
+    console.log(a, a_copy)
+    ```
+
+    imprime
+
+    ```js
+    { char: 'a' } { char: 'a' }
+    { char: 'b' } { char: 'b' }
+    ```
+
+## 2: Emular passagem via referência
+- Variáveis primitivas
+    ```js
+    let numero1 = 1
+    let numero2 = 2
+
+    let modifica_numero = function (numero1, numero2) {
+        numero1 = numero2
+    }
+
+    modifica_numero(numero1, numero2)
+    console.log(numero1)
+    ```
+
+    ```
+    1
+    ```
+
+- Objetos:
+
+    ```js
+    let numero1 = {content: 1}
+    let numero2 = {content: 2}
+
+    let modifica_numero = function(numero1, numero2){
+        numero1.content = numero2.content
+    }
+
+    modifica_numero(numero1, numero2)
+    console.log(numero1)
+    ```
+
+    ```js
+    { content: 2 }
+    ```
+
+## Reuso de código: Classes
+Seria **muito trabalhoso** criar um objeto manualmente para cada animal novo. É possível utilizar **classes funcionais** ou **classes** para solucionar o problema:
+
+### Classes funcionais:
+- Maneira como se faziam classes ANTES do ES6
+- A classe é feita como uma função
+- Atributos e métodos são inicializados com `this.attr = `
+- Instância é criada com `inst = new Class(arg1, arg2, ...)`
+```js
+let Animal = function(especie,nome, nasceu, viveu_ate){
+    this.nome = nome
+    this.especie = especie
+    this.nasceu = nasceu
+    this.viveu_ate = viveu_ate
+
+    this.calcula_idade = function(){
+        return this.viveu_ate -  this.nasceu
+    }
+
+    this.idade = this.calcula_idade()
+ }
+
+ pitty = new Animal ('cão', 'pitty', 2006, 2020)
+ pitty = new Animal ('passaro', 'preciosa', 2015, 2020)
+
+ console.log(pitty)
+```
+Imprime
+
+```js
+Animal {
+  nome: 'pitty',
+  especie: 'cão',
+  nasceu: 2006,
+  viveu_ate: 2020,
+  calcula_idade: [Function],
+  idade: 14
+}
+Animal {
+  nome: 'preciosa',
+  especie: 'passaro',
+  nasceu: 2015,
+  viveu_ate: 2020,
+  calcula_idade: [Function],
+  idade: 5
+}
+```
+
+
+### ```this```
+
+Em Javascript, o `this` é uma variavel especial, que muda dependendo de qual função está sendo executada nesse momento. O propósito do `this` é permitir que métodos de objetos possam acessar informações do objeto. Por exemplo, dentro de um construtor de uma classe, o `this` tem o valor do objeto que esta sendo criado, e dentro de um método de uma classe, o `this` tem o valor do objeto que chamou o método:
+
+```javascript
+class Person {
+	constructor (firstName, lastName) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+	greet () {
+		console.log('Hello, my name is ' + this.firstName + ' ' + this.lastName);
+	}
+}
+
+const jose = new Person("jose", "almeida");
+console.log(jose.firstName, jose.lastName); // jose almeida
+console.log(jose.speak()); // Hello, my name is jose almeida
+```
+
+Acima, temos dois exemplos de usos diferentes do `this`: em um construtor e em um método. Porêm, infelizmente o comportamento do `this` no javascript não é tão simples quanto se parece. Veja o exemplo abaixo:
+
+```javascript
+class Fruit {
+	constructor (fruitType) {
+		this.fruitType = fruitType;
+	}
+
+	greet () {
+		console.log('*greeting ' + this.fruitType + ' noises*');
+	}
+}
+const apple = new Fruit('apple');
+apple.greet(); // *greeting apple noises*
+
+const greetFunction = apple.greet;
+greetFunction(); // TypeError!!!
+```
+
+Isso acontece porque o valor do `this` toda execução da função `greet`, e depende de varios fatores externos pra determinar qual valor de fato ele vai receber (nesse caso, o `this` recebe `null`).
+
+Por sorte, existe uma regrinha que cobre 90% dos casos. Quando você chama uma função a partir de um objeto, o valor do `this` é esse objeto. Por exemplo, se fizermos `pessoa.falar()`, podemos ver que a função `falar` foi chamada a partir do objeto `pessoa`, logo o valor do `this` vai ser esse objeto `pessoa`.
+
+### Arrow functions
+
+Arrow functions são só uma forma diferente de se criar funções. Elas tem a seguinte sintaxe:
+
+```javascript
+const functionName = (arg1, arg2) => {
+	/* normal function code */
+	return someValue;
+}
+```
+
+Se a função não tiver argumentos, podemos colocar parentesis vazios. Exemplo:
+```javascript
+const functionName = () => {
+	/* normal function code */
+	return someValue;
+}
+```
+
+Se a função for pequena o suficiente, é possvel substituir as chaves da arrow function por uma expressao, que sera o retorno da funcao. Exemplo:
+
+```javascript
+const functionName = (arg1, arg2) => arg1 + arg2 // will always return arg1 + arg2.
+```
+
+
+#### Mas Por que Arrow Funtions?
+
+Ela serem mais suscintas é visto como vantagem pela comunidade, mas não só a única. Elas tambem interagem com o `this`.
+
+Ao inves de uma `arrow function` calcular o valor do this toda vez que ela for executada, ela calcula esse valor apenas quando ela é criada, e mantem ele constante.
+
+
+isso pode ajudar a consertar um problema que ja encontramos. Veja:
+
+```javascript
+class Fruit {
+	constructor (fruitType) {
+		this.fruitType = fruitType;
+	}
+
+	greet = () => {
+		console.log('*greeting ' + this.fruitType + ' noises*');
+	}
+}
+const apple = new Fruit('apple');
+apple.greet(); // *greeting apple noises*
+
+const greetFunction = apple.greet;
+greetFunction(); // *greeting apple noises*
+```
+
+Ao inves de recebermos um erro pelo valor do this, temos o comportamento esperado.
+
+`arrow functions` são, portanto, preferiveis, pois não usam o `this` de forma quase imprevisivel.
