@@ -674,7 +674,7 @@ const greetFunction = apple.greet;
 greetFunction(); // TypeError!!!
 ```
 
-Isso acontece porque o valor do `this` toda execução da função `greet`, e depende de varios fatores externos pra determinar qual valor de fato ele vai receber (nesse caso, o `this` recebe `null`).
+Isso acontece porque o valor do `this` muda a cada execução da função `greet`, a depender de varios fatores externos pra determinar qual valor de fato ele vai receber (nesse caso, o `this` recebe `null`).
 
 Por sorte, existe uma regrinha que cobre 90% dos casos. Quando você chama uma função a partir de um objeto, o valor do `this` é esse objeto. Por exemplo, se fizermos `pessoa.falar()`, podemos ver que a função `falar` foi chamada a partir do objeto `pessoa`, logo o valor do `this` vai ser esse objeto `pessoa`.
 
