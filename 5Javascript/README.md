@@ -733,3 +733,145 @@ greetFunction(); // *greeting apple noises*
 Ao inves de recebermos um erro pelo valor do this, temos o comportamento esperado.
 
 `arrow functions` são, portanto, preferiveis, pois não usam o `this` de forma quase imprevisivel.
+
+## Callback
+
+É simplesmente uma **função B passada pra uma função A, que é executada por A**.
+
+```js
+let callback_b = function () {
+  console.log("Entrei em b");
+};
+let a = function (callback_b) {
+  console.log("Entrei em a");
+  return callback_b();
+};
+a(callback_b);
+```
+
+Exemplo de callbacks já conhecidos: `.addEventListener('event', callback)`.
+
+Callbacks **NÃO IMPLICAM EM ASSÍNCRONICIDADE**. Mas Javascript assíncrono se utiliza de callbacks.
+
+# Javascript assíncrono
+
+Javascript possui apenas uma thread principal. Código bloqueante (síncrono) trava a thread principal, impedindo o funcionamento do resto do programa enquanto uma operação custosa não se resolve:
+
+Isso é nítido em casos como:
+
+```js
+console.log("A");
+for (let i = 0; i < 1000000000; i++) {} //operação custosa
+console.log("B");
+for (let i = 0; i < 1000000000; i++) {} //operação custosa
+console.log("C");
+```
+
+Que imprime `A`, depois `B` após um tempo e então `C`.
+
+O comportamento passa a ser problemático no contexto do Broswer, onde ações do usuário são orientadas a **eventos**:
+
+```js
+let botao = document.getElementsByTagName("button")[0]; //Referencia o primeiro botao da pagina
+botao.addEventListener("click", () => {
+  //Insere nele um evento de click que
+  alert("voce clickou!"); //Dá alert
+});
+
+console.log("A");
+for (let i = 0; i < 1000000000; i++) {} //Operação custosa
+console.log("B");
+for (let i = 0; i < 1000000000; i++) {} //Operação custosa
+console.log("C");
+```
+
+<img src = 'https://i.imgur.com/N0OeIpm.png'>
+<img src = 'https://i.imgur.com/Fp1ZUIH.png'>
+
+Na prática, operações síncronas/bloquantes não só impedem a a impressão de `B` e `C`, como também **Travam a execução dos callbacks dos eventos da página**, pois **ocupam a thread principal**.
+
+A problemática pode ser resolvida por meio de **Callbacks Assíncronos**, **Promisses** , **Async-Await** e, no pior dos casos, **requisições**. O ciclo que gere a assincronicidade do JS é o **Event Loop**
+
+### Callbacks Assíncronos:
+
+Utilizaremos como exemplo a função `SetTimeOut()`:
+
+- Definida na **API de Timers** da WebAPI
+- Sintaxe: `SetTimeOut(callback, time)`
+
+  - `callback`: Função que será executada
+  - `time`: Tempo em milissegundos de espera para execução da função
+
+    ```js
+    console.log("Hi");
+
+    setTimeout(function cb() {
+      console.log("There");
+    }, 3000);
+    console.log("Codelab Class!");
+    ```
+
+    - Exemplo 2:
+
+    ```js
+    setTimeout(() => {
+        console.log("Requisição A");
+    }, 2000);
+
+    setTimeout(() => {
+        console.log("Requisição B");
+    }, 3000);
+    ```
+
+    - Exemplo 3: A **Mágica** do callback assíncrono.
+
+    ```js
+    console.log("Hi");
+
+    setTimeout(function cb() {
+        console.log("Requisição 1");
+        setTimeout(
+        () => console.log("Requisição 2, dependente da Requisição 1"),
+        3000
+        );
+    }, 3000);
+    ```
+
+## EVENT LOOP:
+
+- Composto pela `Stack`, `WebAPI`, e `TaskQueue`.
+- Ciclo que gere os callbacks assíncronos, permitindo assincronicidade
+  <img src = 'https://miro.medium.com/max/748/1*-MMBHKy_ZxCrouecRqvsBg.png'>
+- <a href = 'https://docs.google.com/presentation/d/14Z-F7ECO09onKVsk_YwyU9FNsdJXH7RBLu5jceK4kEQ/edit#slide=id.g76ef9402b8_0_16'>Animação feita com amor por Angra </a>
+
+### Stack
+
+- Empilha **chamada de funções**
+- Envia para a **WebAPI** operações que **não são** JS puro (`.setTimeOut()`, `.addEventListener()`, requisições)
+- Executa retorno das funções de **cima para baixo**, ou seja, da mais nova para a mais antiga.
+- **TUDO QUE É JS PURO RODA A PARTIR DA STACK**
+
+### WebAPI
+
+- Conjunto **PRÉ-DEFINIDO** de APIS com operações que **travariam a thread principal**.
+- A JS-Engine **consome** as APIS, que **Não executam código JS**.
+- São implementadas pelo **BROWSER** em uma linguagem qualquer (Normalmente C++).
+- Mais de <a href = 'https://developer.mozilla.org/pt-BR/docs/Web/API'> 100 APIs </a>
+  - `xmlhttprequest` (Requisições à moda antiga)
+  - Fetch API (Maneira mais atual de realizar requisições)
+  - DOM API (`Document.getElementById()`)
+  - Timers API (`setTimeout`, `setInterval`)
+  - Geolocalização
+  - Local Storage
+  - Videos
+  - Clipboard (Ctrl v)
+  - Eventos (`click`, `mouseover`, `keydown`)
+  - Notificações
+  - Bluetooth
+- **NÃO EXECUTA OS CALLBACKS!!**
+  - Coloca-os na **`TaskQueue`**
+
+### TaskQueue ou Callback Queue
+
+- Acumula **callbacks** lançados pela **WebAPI**
+- Os devolve na **`Stack`** apenas quando ela **Estiver Vazia**.
