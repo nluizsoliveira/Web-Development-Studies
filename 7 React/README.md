@@ -160,7 +160,7 @@ ReactDOM.render(element, document.getElementById("root"));
 
 É importante salientar que **props não devem ser modificados. Componentes devem ser funções puras**. É o state que gerenciará isso. 
 
-- Exemplo: Criando relógio chamando `ReactDOM.render()` múltiplas vezes:
+- Exemplo: Criando relógio funcional chamando `ReactDOM.render()` múltiplas vezes:
 
 ```js
 import React from "react";
@@ -184,7 +184,8 @@ setInterval(tick, 1000)
 ```
 
 ## Estados e ciclo de vida
-Antes dos componentes funcionais e hooks, utilizava-se componentes de classes. O suporte a elas não será removido, e é importante estudá-las pois por muito tempo `this.state` foi a única maneira de se gerenciar estados. 
+### Componentes de classe
+Antes dos componentes funcionais e hooks, utilizava-se componentes de classe. O suporte a elas não será removido, e é importante estudá-las pois por muito tempo `this.state` foi a única maneira de se gerenciar estados. 
 
 Um componente de classe consiste deve: 
 - Estender `React.Component`:
@@ -215,4 +216,90 @@ ReactDOM.render(
   document.getElementById('root')
 )  
 
+```
+
+### Adicionando estado a uma classe
+1. Criar um atributo `this.state` no construtor, que conterá a variável de estado. Esta variável pode ser de qualquer tipo básico (string, número, vetor e mesmo dicionário). 
+2. Acessar variável a partir de `this.state`
+
+Exemplo: Armazenando a data em um estado (no momento, ainda estático):
+
+```js
+class Clock extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {date: new Date()}
+  }
+
+  render(){
+    return(
+      <p>It's {this.state.date.toLocaleTimeString()}</p>
+    )
+  }
+}
+
+const element = <Clock/>
+ReactDOM.render(
+  element, 
+  document.getElementById('root')
+);
+```
+
+Apenas adicionar um estado não basta para que o relógio se atualize. É necessário implementar métodos que se usem do **ciclo de vida** dos componentes React para que isso ocorra. 
+
+Além disso, estados **não devem ser modificados diretamente**. É utilizado o método `setState()` para isso, que sobrescreve o conteúdo atual de `this.State`. 
+
+### Ciclo de vida de componentes
+É importante que um componente seja liberado após sua utilização terminar.
+. **mounting** é o termo utilizado para quando o componente é renderizado no DOM pela primeira vez
+. **unmounting**, quando é removido.
+
+É possível definir o que ocorrerá quando um componente montar e desmontar utilizando os métodos `componentDidMount()` e `componentWillUnmount()`, chamados **métodos de ciclo de vida**.
+
+São estes os locais ideais para settar um timer que gerenciará o componente dinâmico do relógio. 
+
+**Exemplo: Relógio funcional utilizando estados e o ciclo de vida do compontent**:
+```javascript
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class Clock extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {date: new Date()}
+  }
+
+  componentDidMount(){
+    // timerID keeps track of the setInterval event so it's possible to kill it
+    // when component unmounts. 
+    this.timerID = setInterval(
+      // An arrow function is required for associating .this with setInterval scope, allowing
+      // a call for .setState. Binding would be required otherwise. 
+      ()=>this.updateTime(), 
+      1000
+    )
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID)
+  }
+
+  updateTime(){
+    this.setState({
+      date: new Date()
+    })
+  }
+
+  render(){
+    return(
+      <p>It's {this.state.date.toLocaleTimeString()}</p>
+    )
+  }
+}
+
+const element = <Clock/>
+ReactDOM.render(
+  element, 
+  document.getElementById('root')
+);
 ```
