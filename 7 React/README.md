@@ -321,4 +321,35 @@ ReactDOM.render(
   ```
 - Caso seja um dicionário, `setState` atualiza apenas os campos passados, mantendo os outros intactos. Isso significa que não se trata de uma subscrição, e sim uma mescla. 
 - O estato de um componente **é acessível somente a ele próprio**. Componentes pais e filhos não conseguem discernir se seus componentes filhos/pais tem estado ou mesmo acessá-lo. 
-  - É possível passar estados de maneira top-down por `props`. Componentes filhos podem ter como propriedade o `state` de seus pais. 
+  - É possível passar estados de maneira top-down por `props`. Componentes filhos podem ter como propriedade o `state` de seus pais.
+
+## Eventos
+As principais diferenças na chamada de eventos em React, em comparação com Js puro, são:
+- Eventos devem ser nomeados em camelCase
+- Eventos em elementos jsx podem ser diretamente passados como funções, no lugar de strings. 
+
+```js
+<button onClick = {sampleFoo}>Click me</button>
+```
+### Evento de click 
+- Exemplo: Botão cujo texto inverte entre 'SIM' ou 'NÃO' a cada click: 
+```js
+class ToggleButton extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {isActive: false}
+  }
+
+  toggle(){
+    this.setState({isActive: !this.state.isActive})
+  }
+
+  getToggleString(){
+    return this.state.isActive ? 'SIM' : 'NAO'
+  }
+
+  render(){
+    return <button onClick = {()=>{this.toggle()}}>{this.getToggleString()}</button>
+  }
+}
+```
