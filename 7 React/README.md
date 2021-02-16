@@ -98,9 +98,7 @@ For example, class becomes className in JSX, and tabindex becomes tabIndex.
 Ao contrário de elementos do DOM de fato, elementos do React são objetos, o que faz deles computacionalmente mais baratos. ReactDOM é quem atualiza o DOM a partir de elementos React. 
 
 ### Atualizando um elemento renderizado
-**Elementos React são imutáveis**. Não é possível modificar seus elementos filhos ou atributos. São como um frame de um filme em um determinado ponto da UI. A única maneira de atualizar a UI é chamando `ReactDOM.render()` com novos elementos. 
-
-Na prática, entretanto, `ReactDOM.render()` é chamado apenas uma única vez. Na prática, são utilizados **Estados** para gerenciar componentes que precisam de dinamicidade. 
+**Elementos React são imutáveis**. Não é possível modificar seus elementos filhos ou atributos diretamente. São como um frame de um filme em um determinado ponto da UI. As única maneiras de atualizar a UI são chamando `ReactDOM.render()` novamente (O que é uma má prática) ou utilizando **estados**. 
 
 ## Componentes
 Permitem dividir a UI em pedaços independentes e re-utilizáveis de código. É possível escrever componentes utilizando classes ou funções. Entretanto, a abordagem com funções é mais moderna e vantajosa. 
@@ -185,12 +183,15 @@ function tick(){
 setInterval(tick, 1000)
 ```
 
-## Componentes de classes
-Para utilizar states sem utilizar hooks, utiliza-se classes. Para passar um componente funcionar para classes:
-- Cria-se uma classe que extende `React.Component`:
-- Implementa-se uma funções `constructor(props)` que a passa para super e define variáveis internas
-- Implementa-se uma função `render()` que retorna o JSX
-- `props` passa a ser acessado com `this.props`
+## Estados e ciclo de vida
+Antes dos componentes funcionais e hooks, utilizava-se componentes de classes. O suporte a elas não será removido, e é importante estudá-las pois por muito tempo `this.state` foi a única maneira de se gerenciar estados. 
+
+Um componente de classe consiste deve: 
+- Estender `React.Component`:
+- Implementar um método `constructor()` que a passe `props` ao construtor da classe pai (`React.Component`) e define variáveis internas
+- Implementar uma função `render()` que retorna o JSX
+
+Exemplo: Componente que mostra horário em que foi criado (estático) utilizando classes 
 
 ```js
 import React from "react";
@@ -206,12 +207,12 @@ class Clock extends React.Component{
   }
 }
 
-function tick(){
-  const element = <Clock/>
 
-  ReactDOM.render(
-    element,
-    document.getElementById('root')
-  )  
-}
+const element = <Clock/>
+
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+)  
+
 ```
