@@ -247,7 +247,7 @@ ReactDOM.render(
 
 Apenas adicionar um estado não basta para que o relógio se atualize. É necessário implementar métodos que se usem do **ciclo de vida** dos componentes React para que isso ocorra. 
 
-Além disso, estados **não devem ser modificados diretamente**. É utilizado o método `setState()` para isso, que sobrescreve o conteúdo atual de `this.State`. 
+Além disso, estados **não devem ser modificados diretamente**. É utilizado o método `setState()` para isso, que atualiza o conteúdo atual de `this.State`. 
 
 ### Ciclo de vida de componentes
 É importante que um componente seja liberado após sua utilização terminar.
@@ -303,3 +303,22 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+
+### Mais sobre setState: 
+- Sempre que `setState` é chamado, React invoca `render()` atualizando a UI da página. 
+- Não se deve atualizar o estado de um componente diretamente. Isso porque `render` não será chamado. 
+- `state` e `props` podem ser atualizados assincronamente. Não é recomendado confiar em seus valores para o cálculo do próximo estado. Para resolver isso, o ideal é que se utilize uma função, que receberá como argumentos `state` e `props` atualizados. 
+  ```js
+  // Permite condição de corrida
+  this.setState({
+    counter: this.state.counter + this.props.increment,
+  });
+
+  // Evita condição de corrida
+  this.setState((state, props) => ({
+    counter: state.counter + props.increment
+  }));
+  ```
+- Caso seja um dicionário, `setState` atualiza apenas os campos passados, mantendo os outros intactos. Isso significa que não se trata de uma subscrição, e sim uma mescla. 
+- O estato de um componente **é acessível somente a ele próprio**. Componentes pais e filhos não conseguem discernir se seus componentes filhos/pais tem estado ou mesmo acessá-lo. 
+  - É possível passar estados de maneira top-down por `props`. Componentes filhos podem ter como propriedade o `state` de seus pais. 
