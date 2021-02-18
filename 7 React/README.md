@@ -353,3 +353,131 @@ class ToggleButton extends React.Component{
   }
 }
 ```
+### Argumentos de eventos
+Utilizar arrow function cujo parâmetro é `e`, variável que representa o evento e será passada como último argumento de `foo`
+```js
+<button onClick={(e) => this.foo(arg, e)}>Botão com argumento</button>
+```
+
+## Renderização condicional
+Não só elementos JSX, como os próprios componentes podem ser renderizados condicionalmente. A prática é muito comum quando se trata, por exemplo, de páginas com sistema de login, onde um usuário loggado poder ver informações diferentes de um visitante. 
+
+- Exemplo: Simulação de componente que modifica seu conteúdo a partir de um login
+```javascript
+function GreetsUnlogged(){
+    return <p>You're not logged. Please Login</p>
+}
+function GreetsLogged(){
+    return <p>You're logged. Welcome Back!</p>
+}
+
+class Greetings extends React.Component{
+  render(){
+    if(this.props.isLogged){
+      return <GreetsLogged/>
+    }
+    return <GreetsUnlogged/>
+  }
+}
+
+
+class Page extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {isLogged: false}
+  }
+
+  login(){
+    this.setState({isLogged: true})
+  }
+
+  logout(){
+    this.setState({isLogged: false})
+  }
+
+  getLoginButton(){
+    return this.state.isLogged? <button onClick = {()=>{this.logout()}}>logout</button> : 
+                                <button onClick = {()=>{this.login()}}>login</button>
+  }
+
+  render(){
+    return(
+      <>
+      <Greetings isLogged={this.state.isLogged}/>
+      {this.getLoginButton()}
+      </>
+    )
+  }
+}
+
+const element = <Page/>
+ReactDOM.render(element, document.getElementById('root'))
+``` 
+
+O componente acima tem um grande inconveniente: A função `getLoginButton` poderia retornar um componente `<LoginButton`, mas `this.login` e `this.logout` seriam funções de `<Page>`, e não  `<LoginButton>`, o que lançaria um erro. Em suma, o componente filho não conseguiria atualizar o estado de seu componente pai. É possível contornar isso utilizando `props` de maneira sofisticada: 
+
+## Modificando estado de um componente pai a partir de seu filho
+Deve-se encapsular `setState` em uma função `wrapper` e passá-la para `props` do componente filho: 
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+function GreetsUnlogged(){
+  return <p>You're not logged. Please Login</p>
+}
+function GreetsLogged(){
+  return <p>You're logged. Welcome Back!</p>
+}
+
+class Greetings extends React.Component{
+  render(){
+    if(this.props.isLogged){
+      return <GreetsLogged/>
+    }
+    return <GreetsUnlogged/>
+  }
+}
+
+class LoginButton extends React.Component{
+  login(){
+    console.log(this.props)
+    this.props.handler({isLogged: true})
+  }
+
+  logout(){
+    this.props.handler({isLogged: false})
+  }
+  
+  render(){
+    if(this.props.isLogged){
+      return <button onClick = {()=>{this.logout()}}>logout</button> 
+    }
+    return <button onClick = {()=>{this.login()}}>login</button>
+  }
+}
+
+class Page extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {isLogged: false}
+  }
+
+  handler(newState){
+    this.setState(newState)
+    console.log(this.state)
+  }
+
+  render(){
+    return(
+      <>
+      <Greetings isLogged={this.state.isLogged}/>
+      <LoginButton isLogged={this.state.isLogged} handler = {(newState)=>this.handler(newState)}/>
+      </>
+    )
+  }
+}
+
+const element = <Page/>
+ReactDOM.render(element, document.getElementById('root'))
+```
